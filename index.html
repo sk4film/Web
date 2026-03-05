@@ -342,11 +342,10 @@
     </nav>
 
     <div class="container">
-        <!-- ========== TOP ADS ========== -->
+        <!-- ========== TOP ADS (responsive) ========== -->
         <div class="top-ad-container">
-            <!-- First ad unit (mobile/desktop responsive via original script) 
-                 It will show 320x50 on mobile and something else on desktop depending on script -->
-            <div class="ad-unit">
+            <!-- Mobile ad (320x50) -->
+            <div class="mobile-ad">
                 <script>
                     atOptions = {
                         'key' : '216fbe302aed8bf326047982efbaaf02',
@@ -358,10 +357,9 @@
                 </script>
                 <script src="https://marksdespitelinear.com/216fbe302aed8bf326047982efbaaf02/invoke.js"></script>
             </div>
-
-            <!-- Second ad unit (same for both mobile & desktop) as requested -->
-            <div class="ad-unit">
-                <script async src="https://js.onclckmn.com/static/onclicka.js" data-admpid="429593"></script>
+            <!-- Desktop ad (onclicka) -->
+            <div class="desktop-ad">
+                <script async src="https://js.onclckmn.com/static/onclicka.js" data-admpid="429588"></script>
             </div>
         </div>
 
@@ -369,7 +367,7 @@
         <div style="margin: 20px 0 30px;">
             <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 10px; padding-left: 10px;">
                 <i class="fas fa-film" style="color: var(--primary); font-size: 2rem;"></i>
-                <span style="color: var(--accent); font-size: 2rem; font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">🎥 CINEMATIC 3D COVERFLOW</span>
+                <span style="color: var(--accent); font-size: 2rem; font-weight: 700; text-shadow: 0 2px 8px rgba(0,0,0,0.5);">🔥 Trending Movies</span>
             </div>
             <div class="coverflow-wrapper">
                 <div class="swiper" id="coverflowSwiper">
@@ -377,14 +375,12 @@
                 </div>
                 <div class="swiper-button-prev-custom"><i class="fas fa-chevron-left"></i></div>
                 <div class="swiper-button-next-custom"><i class="fas fa-chevron-right"></i></div>
-            </div>
-            <div class="pause-indicator">✨ hover to pause · infinite loop · smooth 3D</div>
         </div>
 
         <!-- main prompt -->
         <div class="main-prompt-text">
             <span class="big-static-line">
-                <i class="fa-regular fa-hand-point-right"></i> Click Here to Enter SK4FiLM entertainment World <i class="fa-regular fa-hand-point-left"></i>
+                <i class="fa-regular fa-hand-point-right"></i> Enter the Ultimate SK4FiLM Entertainment Hub – Click Here <i class="fa-regular fa-hand-point-left"></i>
             </span>
             <div class="static-down-arrow">👇</div>
         </div>
@@ -410,19 +406,17 @@
         </div>
 
         <!-- plain app prompt -->
-        <div style="display: flex; justify-content: center;">
             <div class="plain-app-prompt">
-                <i class="fas fa-download"></i> Get Movies App 👇
+                <i class="fas fa-download"></i> Install Movies App 
             </div>
         </div>
 
         <!-- install buttons -->
         <div class="install-grid">
-            <a href="https://sk4film.github.io" target="_blank" class="install-btn">
-                <i class="fa-brands fa-firefox-browser"></i> Install Now
+            <a href="https://github.com/sk4film/Web/releases/download/v1.0/SK4Film.apk" class="app-download-btn">Download Now</a>      
             </a>
-            <a href="https://sk4film.github.io" target="_blank" class="install-btn">
-                <i class="fa-solid fa-fire"></i> Install Now
+            <a href="https://www.mediafire.com/file/wq5t24hs04khdx6/SK4Film.apk/file" target="_blank" class="install-btn">
+                <i class="fa-solid fa-fire"></i> Download Now
             </a>
         </div>
 
@@ -434,12 +428,37 @@
         </div>
 
         <!-- tutorial -->
-        <div class="section-card">
-            <div class="section-title"><i class="fas fa-circle-info"></i> HOW TO USE</div>
-            <div class="tutorial-grid">
-                <div class="tutorial-card"><i class="fas fa-magnifying-glass"></i><h4>Search</h4><p>Click any poster to search.</p></div>
-                <div class="tutorial-card"><i class="fas fa-download"></i><h4>Download</h4><p>HD from Telegram.</p></div>
-                <div class="tutorial-card"><i class="fas fa-link"></i><h4>Stream</h4><p>DiskWala / StreaamNet.</p></div>
+        <div class="section-box animate__animated animate__fadeIn">
+            <h2 style="color: var(--accent); text-align: center; margin-bottom: 25px; padding: 0 5px;">
+                <i class="fas fa-play-circle me-2"></i>Tutorial Videos
+            </h2>
+            <div class="row gy-4">
+                <div class="col-12 col-md-4">
+                    <div style="background: rgba(30, 41, 59, 0.7); padding: 15px; border-radius: 8px; text-align: center; height: 100%;">
+                        <h5 style="color: var(--accent); margin-bottom: 12px; font-size: 1rem;">How to Search Movies</h5>
+                        <div class="ratio ratio-16x9">
+                            <iframe allowfullscreen src="https://www.youtube.com/embed/PSQ9_KLzm8s" style="border-radius: 8px;" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-4">
+                    <div style="background: rgba(30, 41, 59, 0.7); padding: 15px; border-radius: 8px; text-align: center; height: 100%;">
+                        <h5 style="color: var(--accent); margin-bottom: 12px; font-size: 1rem;">StreaamNet Link</h5>
+                        <div class="ratio ratio-16x9">
+                            <iframe allowfullscreen src="https://www.youtube.com/embed/fVL7DfhnwWM" style="border-radius: 8px;" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-12 col-md-4">
+                    <div style="background: rgba(30, 41, 59, 0.7); padding: 15px; border-radius: 8px; text-align: center; height: 100%;">
+                        <h5 style="color: var(--accent); margin-bottom: 12px; font-size: 1rem;">DiskWala Link</h5>
+                        <div class="ratio ratio-16x9">
+                            <iframe allowfullscreen src="https://www.youtube.com/embed/ZNKeL-pcIDw" style="border-radius: 8px;" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -449,11 +468,6 @@
             <div class="dev">Developer - SK</div>
             <div>© 2025 SK4FiLM</div>
         </div>
-    </div>
-
-    <!-- visitor counter -->
-    <div class="visitor-box">
-        <i class="fas fa-users" style="color:var(--accent);"></i> <span id="visitorCount">1983</span> online
     </div>
 
     <!-- Swiper JS -->
