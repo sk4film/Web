@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>SK4FiLM • gradient • dual ads</title>
+    <title>SK4FiLM • responsive only one ad</title>
     <!-- Font Awesome 6, premium fonts, swiper -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
@@ -11,10 +11,10 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --primary: #ff0040;        /* rich red-pink */
-            --secondary: #2a7fff;       /* vibrant blue */
-            --accent: #00f2fe;           /* cyber cyan */
-            --gold: #ffe180;              /* soft gold */
+            --primary: #ff0040;
+            --secondary: #2a7fff;
+            --accent: #00f2fe;
+            --gold: #ffe180;
             --dark-bg: #0b0c15;
             --glass-edge: rgba(255,255,255,0.08);
         }
@@ -26,7 +26,6 @@
             min-height: 100vh;
             letter-spacing: 0.3px;
         }
-        /* fixed blur overlay — subtle */
         body::before {
             content: ''; position: fixed; inset:0;
             background: rgba(0,0,0,0.2);
@@ -63,7 +62,6 @@
             font-size: 0.65rem; color: var(--accent); text-transform: uppercase;
             letter-spacing: 3px; margin-top: -4px;
         }
-        /* action row */
         .action-buttons { display: flex; gap: 15px; align-items: center; }
         .search-icon-btn {
             width: 48px; height: 48px; border-radius: 40% 60% 40% 60% / 50% 40% 60% 50%;
@@ -104,26 +102,76 @@
 
         .container { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
 
-        /* ========== DUAL ADS ========== minimal gap, premium fit */
+        /* ========== AD ZONES – RESPONSIVE: ONLY ONE SHOWN PER SCREEN SIZE ========== */
+        .ad-spot {
+            background: rgba(0,0,0,0.2);
+            border-radius: 24px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-edge);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            transition: 0.2s;
+            margin: 0;
+        }
+        /* top ad container: both ads present, but only one visible based on screen */
         .top-ad-container {
             display: flex; flex-wrap: wrap; justify-content: center;
-            align-items: center; gap: 15px; margin: 10px 0 25px 0;
+            align-items: center; gap: 15px; margin: 10px 0 20px 0;
         }
-        .mobile-ad, .desktop-ad {
-            background: rgba(0,0,0,0.2); border-radius: 24px;
-            backdrop-filter: blur(10px); border: 1px solid var(--glass-edge);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
-            overflow: hidden; transition: 0.2s;
+        .mobile-ad {
+            min-width: 300px;
+            min-height: 55px;
+            display: block;  /* visible by default (mobile first) */
         }
-        .mobile-ad { min-width: 300px; }  /* 320x50 ad inside */
-        .desktop-ad { min-width: 300px; } /* flexible, but script fills */
-        @media (min-width: 700px) {
-            .top-ad-container { gap: 20px; }
+        .desktop-ad-leader {
+            min-width: 300px;
+            min-height: 90px;
+            display: none;   /* hidden on mobile */
+        }
+        /* switch at 768px: hide mobile, show desktop */
+        @media (min-width: 768px) {
+            .mobile-ad {
+                display: none;
+            }
+            .desktop-ad-leader {
+                display: block;
+                min-width: 728px;
+            }
         }
 
-        /* ----- 3D coverflow (cinematic) ----- */
+        /* vertical ad (300x900) – shown only on mobile (<768px) */
+        .ad-vertical-container {
+            display: flex; justify-content: center; margin: 15px 0 15px;
+        }
+        .vertical-ad {
+            width: 300px; min-height: 270px;
+            background: transparent;
+            display: block;  /* visible on mobile */
+        }
+        /* horizontal adaptive (for desktop) – hidden on mobile */
+        .ad-horizontal-container {
+            display: flex; justify-content: center; margin: 15px 0 15px;
+        }
+        .horizontal-ad {
+            width: 100%; max-width: 728px; min-height: 90px;
+            background: transparent;
+            display: none;   /* hidden on mobile */
+        }
+        @media (min-width: 768px) {
+            .vertical-ad {
+                display: none;   /* hide vertical on desktop */
+            }
+            .horizontal-ad {
+                display: flex;    /* show horizontal on desktop */
+            }
+        }
+
+        /* 3D coverflow */
         .coverflow-wrapper {
-            position: relative; margin: 35px 0 30px; padding: 0 35px;
+            position: relative; margin: 20px 0 20px; padding: 0 35px;
         }
         .swiper {
             width: 100%; padding: 45px 0 60px;
@@ -139,30 +187,16 @@
         .swiper-slide:hover {
             border-color: var(--accent); box-shadow: 0 20px 50px var(--accent);
         }
-        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; }
+        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        /* hide swiper buttons as requested */
         .swiper-button-prev-custom, .swiper-button-next-custom {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            width: 48px; height: 48px; background: rgba(0,0,0,0.4);
-            backdrop-filter: blur(10px); border: 2px solid var(--accent);
-            border-radius: 50%; color: white; display: flex;
-            align-items: center; justify-content: center; font-size: 1.8rem;
-            cursor: pointer; z-index: 20; transition: 0.2s;
-            box-shadow: 0 0 25px var(--accent);
-        }
-        .swiper-button-prev-custom:hover, .swiper-button-next-custom:hover {
-            background: var(--accent); color: black; transform: translateY(-50%) scale(1.1);
-        }
-        .swiper-button-prev-custom { left: -8px; }
-        .swiper-button-next-custom { right: -8px; }
-        @media (min-width: 900px) {
-            .swiper-button-prev-custom { left: -5px; }
-            .swiper-button-next-custom { right: -5px; }
+            display: none;
         }
 
-        /* main prompt (no glow, clean) */
+        /* main prompt – removed hand icons, kept arrow */
         .main-prompt-text {
             display: flex; flex-direction: column; align-items: center;
-            margin: 20px 0 15px;
+            margin: 10px 0 10px;
         }
         .big-static-line {
             font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 2.1rem;
@@ -171,14 +205,14 @@
             display: inline-flex; flex-wrap: wrap; justify-content: center;
             align-items: center; gap: 15px; text-align: center; line-height: 1.2;
         }
-        .big-static-line i { font-size: 2.6rem; color: #ffe484; text-shadow: 0 0 10px cyan; }
+        /* hand icons removed – we keep only the text ULTIMATE SK4FiLM HUB */
         .static-down-arrow { font-size: 2.8rem; color: #90e0ff; filter: drop-shadow(0 4px 6px black); animation: bounceSoft 2s infinite; }
         @keyframes bounceSoft { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(12px); } }
 
-        /* ---------- GRADIENT BUTTONS (EACH UNIQUE) minimal gap, premium ---------- */
+        /* gradient buttons unchanged */
         .quick-links-grid {
             display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
-            margin: 30px 0 20px;
+            margin: 20px 0 15px;
         }
         .glow-on-click-btn {
             flex: 1 1 220px; max-width: 260px; min-width: 200px;
@@ -186,14 +220,12 @@
             align-items: center; gap: 12px; border: 2px solid rgba(255,255,255,0.15);
             text-decoration: none; color: white; font-weight: 600;
             backdrop-filter: blur(20px); box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-            transition: 0.2s ease; outline: none; background-origin: border-box;
+            transition: 0.2s ease; background-origin: border-box;
         }
-        /* each button different gradient */
         .glow-on-click-btn:nth-child(1) { background: linear-gradient(135deg, #ff3b5c, #b2258f); border-color: #ffccdd; }
         .glow-on-click-btn:nth-child(2) { background: linear-gradient(145deg, #3c6eff, #9422c0); border-color: #b8aaff; }
         .glow-on-click-btn:nth-child(3) { background: linear-gradient(225deg, #fa8f21, #d7269e); border-color: #ffc285; }
         .glow-on-click-btn:nth-child(4) { background: linear-gradient(90deg, #0ba3e5, #10d57a); border-color: #aaffdd; }
-
         .glow-on-click-btn i { font-size: 2rem; color: white; filter: drop-shadow(0 2px 5px black); }
         .btn-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2; }
         .small-label { font-size: 0.7rem; opacity: 0.85; color: #fffdde; text-transform: uppercase; }
@@ -202,17 +234,17 @@
 
         /* plain app prompt */
         .plain-app-prompt {
-            text-align: center; font-size: 2rem; font-weight: 600; margin: 30px 0 20px;
+            text-align: center; font-size: 2rem; font-weight: 600; margin: 20px 0 15px;
             background: rgba(0,0,0,0.25); backdrop-filter: blur(16px);
             padding: 10px 35px; border-radius: 90px; display: inline-block;
             border: 2px dashed var(--gold); color: #fffbe3; letter-spacing: 2px;
         }
         .plain-app-prompt i { color: var(--gold); margin-right: 10px; }
 
-        /* install buttons (two gradients) */
+        /* install buttons */
         .install-grid {
             display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
-            margin: 10px 0 30px;
+            margin: 10px 0 20px;
         }
         .install-btn {
             flex: 1 1 240px; max-width: 280px; padding: 18px 28px; border-radius: 80px;
@@ -227,23 +259,10 @@
         .install-btn i { font-size: 2.2rem; color: #fff4b0; }
         .install-btn:active { transform: scale(0.97); border-color: white; }
 
-        /* vertical ad (300x900) but we adjust for responsiveness */
-        .ad-vertical-container {
-            display: flex; justify-content: center; margin: 15px 0 25px;
-        }
-        .ad-300x900-placeholder {
-            width: 300px; min-height: 250px; background: rgba(0,20,40,0.3);
-            backdrop-filter: blur(20px); border: 3px solid var(--accent);
-            border-radius: 50px; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 25px 45px black; padding: 30px 0;
-            background: radial-gradient(circle at 20% 30%, #1a2f45, #030613);
-        }
-        .ad-300x900-placeholder i { font-size: 5rem; opacity: 0.5; color: var(--accent); }
-
-        /* tutorial cards minimal & premium */
+        /* tutorial cards */
         .tutorial-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 22px; margin: 35px 0 25px;
+            gap: 22px; margin: 20px 0 25px;
         }
         .tutorial-card {
             background: rgba(12, 22, 40, 0.5); backdrop-filter: blur(20px);
@@ -259,13 +278,13 @@
         .footer-bar {
             background: rgba(0,0,0,0.3); backdrop-filter: blur(25px);
             border-radius: 70px 70px 0 0; border-top: 4px solid var(--primary);
-            padding: 35px 25px 20px; margin-top: 60px;
+            padding: 35px 25px 20px; margin-top: 40px;
             display: flex; flex-wrap: wrap; justify-content: space-between;
             align-items: center; gap: 20px; color: #e3ecff;
         }
         .terms a { color: var(--accent); text-decoration: none; margin: 0 15px; font-weight: 500; }
         .dev { font-size: 1.7rem; background: linear-gradient(145deg, gold, #ffae70); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
-        .visitor-box { position: fixed; bottom: 20px; right: 20px; background: rgba(0,0,0,0.3); backdrop-filter: blur(25px); padding: 8px 18px; border-radius: 40px; border: 2px solid var(--accent); color: white; z-index: 99; }
+        /* visitor counter removed */
     </style>
 </head>
 <body>
@@ -279,7 +298,7 @@
                 </div>
             </div>
             <div class="action-buttons">
-                <button class="search-icon-btn" onclick="alert('🔍 search')"><i class="fas fa-search"></i></button>
+                <button class="search-icon-btn" onclick="alert('🔍 search demo')"><i class="fas fa-search"></i></button>
                 <div class="dropdown">
                     <div class="menu-button">
                         <div class="menu-line"></div><div class="menu-line"></div><div class="menu-line"></div>
@@ -297,10 +316,10 @@
     </nav>
 
     <div class="container">
-        <!-- ===== DUAL ADS (mobile + desktop) minimal gap ===== -->
+        <!-- ===== DUAL ADS TOP: only one visible per screen (mobile 320x50 / desktop 728x90) ===== -->
         <div class="top-ad-container">
             <!-- Mobile ad 320x50 -->
-            <div class="mobile-ad">
+            <div class="ad-spot mobile-ad">
                 <script>
                     atOptions = {
                         'key' : '216fbe302aed8bf326047982efbaaf02',
@@ -312,14 +331,14 @@
                 </script>
                 <script src="https://marksdespitelinear.com/216fbe302aed8bf326047982efbaaf02/invoke.js"></script>
             </div>
-            <!-- Desktop ad (onclicka) -->
-            <div class="desktop-ad">
+            <!-- Desktop ad 728x90 -->
+            <div class="ad-spot desktop-ad-leader">
                 <script async src="https://js.onclckmn.com/static/onclicka.js" data-admpid="429588"></script>
             </div>
         </div>
 
         <!-- 3D coverflow -->
-        <div style="margin: 10px 0 10px;">
+        <div style="margin: 5px 0 5px;">
             <div style="display: flex; align-items: center; gap: 15px; padding-left: 8px;">
                 <i class="fas fa-fire" style="color: var(--primary); font-size: 2.2rem;"></i>
                 <span style="color: white; font-size: 2rem; font-weight: 700; background: linear-gradient(145deg,#ffb3ba,#c0e0ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;">⚡ TRENDING NOW</span>
@@ -329,19 +348,16 @@
             <div class="swiper" id="coverflowSwiper">
                 <div class="swiper-wrapper" id="swiperWrapper"></div>
             </div>
-            <div class="swiper-button-prev-custom"><i class="fas fa-chevron-left"></i></div>
-            <div class="swiper-button-next-custom"><i class="fas fa-chevron-right"></i></div>
+            <!-- navigation buttons hidden via CSS -->
         </div>
 
-        <!-- main prompt -->
+        <!-- main prompt – hand icons removed -->
         <div class="main-prompt-text">
-            <span class="big-static-line">
-                <i class="fa-regular fa-hand-point-right"></i> ULTIMATE SK4FiLM HUB <i class="fa-regular fa-hand-point-left"></i>
-            </span>
+            <span class="big-static-line">ULTIMATE SK4FiLM HUB</span>
             <div class="static-down-arrow">👇</div>
         </div>
 
-        <!-- four gradient buttons (unique) -->
+        <!-- four gradient buttons -->
         <div class="quick-links-grid">
             <a href="https://t.me/sk4film" target="_blank" class="glow-on-click-btn">
                 <i class="fas fa-film"></i>
@@ -366,26 +382,29 @@
             <span class="plain-app-prompt"><i class="fas fa-download"></i> INSTALL MOVIES APP</span>
         </div>
 
-        <!-- install buttons (gradient pair) -->
+        <!-- install buttons -->
         <div class="install-grid">
             <a href="https://github.com/sk4film/Web/releases/download/v1.0/SK4Film.apk" class="install-btn"><i class="fa-brands fa-android"></i> Download Now</a>
             <a href="https://www.mediafire.com/file/wq5t24hs04khdx6/SK4Film.apk/file" target="_blank" class="install-btn"><i class="fa-solid fa-fire"></i> MediaFire</a>
         </div>
 
-        <!-- 300x900 ad (responsive container) -->
+        <!-- ===== AD ZONE 2: VERTICAL (300x900) shown only on mobile, hidden on desktop ===== -->
         <div class="ad-vertical-container">
-            <div class="ad-unit" style="width:300px; min-height:250px; display: flex; justify-content: center;">
+            <div class="ad-spot vertical-ad" style="min-height: 270px; width: 300px;">
                 <script async src="https://js.onclckmn.com/static/onclicka.js" data-admpid="429593"></script>
-                <!-- fallback if ad not loaded -->
-                <div class="ad-300x900-placeholder" style="display:none;" id="adFallback">
-                    <i class="fas fa-ad"></i> AD 300x250
-                </div>
+            </div>
+        </div>
+
+        <!-- ===== AD ZONE 3: HORIZONTAL ADAPTIVE shown only on desktop, hidden on mobile ===== -->
+        <div class="ad-horizontal-container">
+            <div class="ad-spot horizontal-ad" style="min-height: 90px;">
+                <script async src="https://js.onclckmn.com/static/onclicka.js" data-admpid="429611"></script>
             </div>
         </div>
 
         <!-- tutorial cards -->
-        <div style="margin-top: 40px;">
-            <h2 style="color: var(--accent); text-align: center; font-size: 2.5rem; margin-bottom: 25px;"><i class="fas fa-play-circle me-2"></i>Tutorials</h2>
+        <div style="margin-top: 10px;">
+            <h2 style="color: var(--accent); text-align: center; font-size: 2.5rem; margin-bottom: 20px;"><i class="fas fa-play-circle me-2"></i>Tutorials</h2>
             <div class="tutorial-grid">
                 <div class="tutorial-card">
                     <i class="fas fa-search"></i>
@@ -413,15 +432,13 @@
         </div>
     </div>
 
-    <!-- visitor counter dummy (just for look) -->
-    <div class="visitor-box" id="visitorCount">👁️ 1.8k online</div>
+    <!-- visitor counter removed -->
 
     <!-- swiper and movie logic -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         const BACKEND_URL = 'https://sk4film.koyeb.app';
         const FALLBACK_IMG = 'https://iili.io/fAeIwv9.th.png';
-
         let swiperInstance = null;
 
         async function loadAll() {
@@ -447,7 +464,6 @@
                     loop: true,
                     autoplay: { delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true },
                     coverflowEffect: { rotate: 30, stretch: 0, depth: 150, modifier: 1.5, slideShadows: true },
-                    navigation: { nextEl: '.swiper-button-next-custom', prevEl: '.swiper-button-prev-custom' },
                     speed: 800,
                     breakpoints: {
                         320: { slidesPerView: 1.5, coverflowEffect: { rotate: 40, depth: 100 } },
@@ -464,20 +480,13 @@
                     effect: 'coverflow', grabCursor: true, centeredSlides: true, slidesPerView: 'auto',
                     loop: true, autoplay: { delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true },
                     coverflowEffect: { rotate: 30, stretch: 0, depth: 150, modifier: 1.5, slideShadows: true },
-                    navigation: { nextEl: '.swiper-button-next-custom', prevEl: '.swiper-button-prev-custom' },
                     speed: 800,
                 });
             }
         }
-
         function handleMovieClick(title) { window.location.href = `search.html?query=${encodeURIComponent(title)}`; }
-
         document.addEventListener('DOMContentLoaded', loadAll);
     </script>
-    <script>
-        // small visitor increment effect
-        let v = 1840;
-        setInterval(() => { document.getElementById('visitorCount').innerText = `👁️ ${v}+ online`; v += Math.floor(Math.random()*5); }, 5000);
-    </script>
+    <!-- no visitor counter script -->
 </body>
 </html>
