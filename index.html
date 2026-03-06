@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>SK4FiLM • responsive only one ad</title>
+    <title>SK4FiLM • SUPERHERO LANDING</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -72,6 +72,7 @@
             border: none; color: white; font-size: 1.1rem;
             cursor: pointer; transition: 0.25s; box-shadow: 0 0 15px #ff0040;
             display: flex; align-items: center; justify-content: center;
+            position: relative; overflow: hidden;
         }
         .search-icon-btn:active { transform: scale(0.95); }
         .dropdown { position: relative; }
@@ -81,6 +82,7 @@
             display: flex; flex-direction: column; gap: 4px;
             align-items: center; justify-content: center; cursor: pointer;
             transition: 0.25s; box-shadow: 0 0 10px var(--accent);
+            position: relative; overflow: hidden;
         }
         .menu-line { width: 16px; height: 2px; background: white; border-radius: 5px; }
         .menu-button:active { background: rgba(0,242,254,0.2); transform: scale(0.95); }
@@ -95,6 +97,7 @@
             color: white; padding: 10px 16px; text-decoration: none;
             display: flex; align-items: center; gap: 12px; font-size: 1rem;
             border-radius: 40px; transition: 0.2s; border: 1px solid transparent;
+            position: relative; overflow: hidden;
         }
         .dropdown-content a i { width: 22px; font-size: 1.3rem; color: gold; }
         .dropdown-content a:active {
@@ -167,106 +170,202 @@
             .horizontal-ad { display: flex; }
         }
 
-        /* ========== SLIDER – PROPER IMAGE FIT, KAM WIDTH ========== */
+        /* ========== SLIDER – EXTRA SMALL POSTERS ========== */
         .coverflow-wrapper {
-            position: relative; margin: 15px 0 15px; padding: 0 5px;
+            position: relative; margin: 8px 0 8px; padding: 0 2px;
             width: 100%;
             overflow: visible;
         }
         .swiper {
             width: 100%;
-            height: 180px;
+            height: 170px;
             overflow: visible;
         }
         
-        /* slide ke beech gap */
         .swiper-wrapper {
-            gap: 25px;  /* mobile ke liye */
+            gap: 30px;
         }
         
         .swiper-slide {
-            width: 55px;         /* width aur kam kiya - 100px */
-            aspect-ratio: 2 / 3;  /* poster ratio */
-            border-radius: 8px;
+            width: 38px;
+            aspect-ratio: 2 / 3;
+            border-radius: 4px;
             overflow: hidden;
-            border: 2px solid rgba(255,255,255,0.25);
-            box-shadow: 0 12px 20px -8px rgba(0,0,0,0.8);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1.5px solid rgba(255,255,255,0.3);
+            box-shadow: 0 8px 12px -6px rgba(0,0,0,0.8);
+            transition: all 0.3s ease;
             cursor: pointer;
-            opacity: 0.7;
-            transform: scale(0.85);
-            filter: blur(0.5px);
+            opacity: 0.6;
+            transform: scale(0.8);
+            filter: blur(0.3px);
             margin: 0 !important;
         }
         
-        /* image proper fit - NO STRETCH */
         .swiper-slide img { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover;  /* cover use kiya taaki pura image dikhe, */
+            object-fit: cover;  
             object-position: center;
             display: block; 
             pointer-events: none;
         }
         
-        /* center slide bada, bright, no blur */
         .swiper-slide-active {
-            transform: scale(1.2) !important;  /* thoda aur highlight */
+            transform: scale(1.1) !important;
             opacity: 1;
             border-color: var(--accent);
-            box-shadow: 0 15px 30px var(--accent);
-            border-width: 3px;
+            box-shadow: 0 10px 20px var(--accent);
+            border-width: 2px;
             filter: blur(0);
             z-index: 10;
         }
         
-        /* adjacent slides */
         .swiper-slide-prev, .swiper-slide-next {
-            transform: scale(0.95);
-            opacity: 0.85;
-            filter: blur(0.3px);
+            transform: scale(0.9);
+            opacity: 0.7;
+            filter: blur(0.2px);
         }
         
-        /* desktop ke liye bigger slides */
         @media (min-width: 768px) {
-            .swiper-wrapper {
-                gap: 100px;
-            }
+            .swiper { height: 150px; }
+            .swiper-wrapper { gap: 8px; }
             .swiper-slide {
-                width: 90px;      /* desktop me bhi kam width */
-                border-radius: 20px;
-                transform: scale(0.9);
+                width: 48px;
+                border-radius: 6px;
+                transform: scale(0.85);
             }
             .swiper-slide-active {
                 transform: scale(1.2) !important;
-            }
-            .swiper-slide-prev, .swiper-slide-next {
-                transform: scale(1.0);
             }
         }
         
         /* main prompt text */
         .main-prompt-text {
             display: flex; flex-direction: column; align-items: center;
-            margin: 5px 0 5px;
+            margin: 2px 0 2px;
         }
         .big-static-line {
             font-family: 'Outfit', sans-serif; font-weight: 800; 
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             background: linear-gradient(135deg, #ffffff, #fde8b3, #b5dcff);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             display: inline-flex; flex-wrap: wrap; justify-content: center;
-            align-items: center; gap: 8px; text-align: center; line-height: 1.2;
+            align-items: center; gap: 5px; text-align: center; line-height: 1.2;
         }
         @media (min-width: 768px) {
-            .big-static-line { font-size: 2.1rem; }
+            .big-static-line { font-size: 2rem; }
         }
         
-        .static-down-arrow { font-size: 1.8rem; color: #90e0ff; filter: drop-shadow(0 4px 6px black); animation: bounceSoft 2s infinite; }
-        @media (min-width: 768px) { .static-down-arrow { font-size: 2.8rem; } }
+        .static-down-arrow { font-size: 1.5rem; color: #90e0ff; filter: drop-shadow(0 4px 6px black); animation: bounceSoft 2s infinite; }
+        @media (min-width: 768px) { .static-down-arrow { font-size: 2.5rem; } }
         @keyframes bounceSoft { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(8px); } }
 
-        /* ===== MOBILE BUTTONS - COLUMN ===== */
+        /* ===== MARVEL SUPERHERO LANDING ANIMATIONS ===== */
+        @keyframes superheroLandingLeft {
+            0% { 
+                opacity: 0; 
+                transform: translateX(-150px) translateY(-50px) rotate(-15deg) scale(0.3);
+                filter: blur(8px);
+            }
+            40% { 
+                opacity: 0.9; 
+                transform: translateX(10px) translateY(5px) rotate(3deg) scale(1.1);
+                filter: blur(0);
+            }
+            70% {
+                transform: translateX(-3px) translateY(-2px) rotate(-1deg) scale(0.98);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateX(0) translateY(0) rotate(0) scale(1);
+            }
+        }
+        
+        @keyframes superheroLandingRight {
+            0% { 
+                opacity: 0; 
+                transform: translateX(150px) translateY(-50px) rotate(15deg) scale(0.3);
+                filter: blur(8px);
+            }
+            40% { 
+                opacity: 0.9; 
+                transform: translateX(-10px) translateY(5px) rotate(-3deg) scale(1.1);
+                filter: blur(0);
+            }
+            70% {
+                transform: translateX(3px) translateY(-2px) rotate(1deg) scale(0.98);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateX(0) translateY(0) rotate(0) scale(1);
+            }
+        }
+        
+        @keyframes superheroLandingUp {
+            0% { 
+                opacity: 0; 
+                transform: translateY(150px) translateX(-30px) rotate(10deg) scale(0.3);
+                filter: blur(8px);
+            }
+            40% { 
+                opacity: 0.9; 
+                transform: translateY(-10px) translateX(5px) rotate(-2deg) scale(1.1);
+                filter: blur(0);
+            }
+            70% {
+                transform: translateY(3px) translateX(-2px) rotate(1deg) scale(0.98);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) translateX(0) rotate(0) scale(1);
+            }
+        }
+        
+        @keyframes superheroLandingDown {
+            0% { 
+                opacity: 0; 
+                transform: translateY(-150px) translateX(30px) rotate(-10deg) scale(0.3);
+                filter: blur(8px);
+            }
+            40% { 
+                opacity: 0.9; 
+                transform: translateY(10px) translateX(-5px) rotate(2deg) scale(1.1);
+                filter: blur(0);
+            }
+            70% {
+                transform: translateY(-3px) translateX(2px) rotate(-1deg) scale(0.98);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) translateX(0) rotate(0) scale(1);
+            }
+        }
+
+        /* Energy ripple + glow pulse on landing */
+        @keyframes landingImpactRipple {
+            0% { 
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8), 
+                            0 0 20px 5px rgba(0, 242, 254, 0.7);
+                transform: scale(1);
+            }
+            30% { 
+                box-shadow: 0 0 30px 15px rgba(255, 255, 255, 0.5), 
+                            0 0 50px 25px rgba(0, 242, 254, 0.9);
+                transform: scale(1.08);
+            }
+            70% { 
+                box-shadow: 0 0 15px 8px rgba(255, 255, 255, 0.3), 
+                            0 0 30px 15px var(--accent);
+                transform: scale(1.02);
+            }
+            100% { 
+                box-shadow: 0 10px 20px rgba(0,0,0,0.4), 
+                            0 0 15px 2px rgba(0, 242, 254, 0.3);
+                transform: scale(1);
+            }
+        }
+        
+        /* quick links grid - hero landing */
         .quick-links-grid {
             display: flex;
             flex-direction: column;
@@ -275,147 +374,116 @@
             margin: 15px 0 15px;
             width: 100%;
         }
+        
         .glow-on-click-btn {
             width: 100%;
             max-width: 320px;
-            padding: 14px 18px;
+            padding: 12px 16px;
             border-radius: 50px;
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
             border: 2px solid rgba(255,255,255,0.15);
             text-decoration: none;
             color: white;
             font-weight: 600;
             backdrop-filter: blur(20px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-            transition: 0.2s ease;
             background-origin: border-box;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s;
+            opacity: 0; /* initially hidden for animation */
+            animation-fill-mode: forwards;
+            animation-duration: 0.9s;
+            animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); /* Marvel impact easing */
+            transform-origin: center;
         }
-        .glow-on-click-btn:nth-child(1) { background: linear-gradient(135deg, #ff3b5c, #b2258f); border-color: #ffccdd; }
-        .glow-on-click-btn:nth-child(2) { background: linear-gradient(145deg, #3c6eff, #9422c0); border-color: #b8aaff; }
-        .glow-on-click-btn:nth-child(3) { background: linear-gradient(225deg, #fa8f21, #d7269e); border-color: #ffc285; }
-        .glow-on-click-btn:nth-child(4) { background: linear-gradient(90deg, #0ba3e5, #10d57a); border-color: #aaffdd; }
-        .glow-on-click-btn i { 
-            font-size: 2rem; 
-            color: white; 
-            filter: drop-shadow(0 2px 5px black);
-            min-width: 40px;
-            text-align: center;
+        
+        /* different landing directions for each button */
+        .glow-on-click-btn:nth-child(1) { 
+            background: linear-gradient(135deg, #ff3b5c, #b2258f); 
+            border-color: #ffccdd;
+            animation-name: superheroLandingLeft;
+            animation-delay: 0.1s;
         }
-        .btn-text { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: flex-start; 
-            line-height: 1.2; 
-            flex: 1;
+        .glow-on-click-btn:nth-child(2) { 
+            background: linear-gradient(145deg, #3c6eff, #9422c0); 
+            border-color: #b8aaff;
+            animation-name: superheroLandingRight;
+            animation-delay: 0.2s;
         }
-        .small-label { 
-            font-size: 0.7rem; 
-            opacity: 0.9; 
-            color: #fffdde; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px;
+        .glow-on-click-btn:nth-child(3) { 
+            background: linear-gradient(225deg, #fa8f21, #d7269e); 
+            border-color: #ffc285;
+            animation-name: superheroLandingUp;
+            animation-delay: 0.3s;
         }
-        .main-label { 
-            font-size: 1.1rem; 
-            font-weight: 700; 
-            white-space: nowrap;
+        .glow-on-click-btn:nth-child(4) { 
+            background: linear-gradient(90deg, #0ba3e5, #10d57a); 
+            border-color: #aaffdd;
+            animation-name: superheroLandingDown;
+            animation-delay: 0.4s;
         }
-        .glow-on-click-btn:active { 
-            transform: scale(0.97); 
-            filter: brightness(1.2); 
-            border-color: white; 
+        
+        /* Energy impact effect on finish */
+        .glow-on-click-btn.landed {
+            animation: landingImpactRipple 0.8s ease-out;
         }
-
-        @media (min-width: 768px) {
-            .quick-links-grid {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 16px;
-            }
-            .glow-on-click-btn {
-                flex: 1 1 200px;
-                max-width: 240px;
-                padding: 14px 12px;
-            }
-            .main-label { font-size: 1rem; }
-        }
-
-        /* plain app prompt */
-        .plain-app-prompt {
-            text-align: center; 
-            font-size: 1.4rem; 
-            font-weight: 600; 
-            margin: 15px 0 12px;
-            background: rgba(0,0,0,0.25); 
-            backdrop-filter: blur(16px);
-            padding: 8px 20px; 
-            border-radius: 60px; 
-            display: inline-block;
-            border: 2px dashed var(--gold); 
-            color: #fffbe3; 
-            letter-spacing: 1px;
-            width: auto;
-        }
-        @media (min-width: 768px) {
-            .plain-app-prompt { font-size: 2rem; padding: 10px 35px; }
-        }
-        .plain-app-prompt i { color: var(--gold); margin-right: 8px; }
-
-        /* install buttons - column */
+        
+        /* install buttons hero landing */
         .install-grid {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 12px;
-            margin: 10px 0 20px;
+            margin: 8px 0 18px;
             width: 100%;
         }
+        
         .install-btn {
             width: 100%;
             max-width: 320px;
-            padding: 14px 20px;
+            padding: 12px 18px;
             border-radius: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            background: linear-gradient(145deg, #b523c7, #313bac);
+            gap: 10px;
             border: 2px solid rgba(255,255,255,0.3);
             text-decoration: none;
             color: white;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 700;
             backdrop-filter: blur(10px);
             box-shadow: 0 15px 25px -5px #00000080;
-            transition: 0.2s;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s;
+            opacity: 0;
+            animation-fill-mode: forwards;
+            animation-duration: 0.9s;
+            animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
         }
-        .install-btn:first-child { background: linear-gradient(225deg, #ff8c2e, #d5006b); }
-        .install-btn:last-child { background: linear-gradient(300deg, #00b0c8, #5f2bb3); }
-        .install-btn i { font-size: 1.8rem; color: #fff4b0; }
-        .install-btn:active { transform: scale(0.97); border-color: white; }
-
-        @media (min-width: 768px) {
-            .install-grid {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .install-btn {
-                flex: 1 1 220px;
-                max-width: 260px;
-            }
+        
+        .install-btn:first-child { 
+            background: linear-gradient(225deg, #ff8c2e, #d5006b);
+            animation-name: superheroLandingLeft;
+            animation-delay: 0.5s;
         }
-
-        /* tutorial cards */
+        .install-btn:last-child { 
+            background: linear-gradient(300deg, #00b0c8, #5f2bb3);
+            animation-name: superheroLandingRight;
+            animation-delay: 0.6s;
+        }
+        
+        /* tutorial cards hero landing */
         .tutorial-grid {
             display: grid; 
             grid-template-columns: 1fr;
             gap: 15px; 
             margin: 15px 0 20px;
         }
+        
         .tutorial-card {
             background: rgba(12, 22, 40, 0.5); 
             backdrop-filter: blur(20px);
@@ -424,7 +492,23 @@
             text-align: center;
             border: 2px solid rgba(0,242,254,0.3); 
             transition: 0.25s;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            animation-name: superheroLandingUp;
+            animation-duration: 0.9s;
+            animation-fill-mode: forwards;
+            animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
         }
+        
+        .tutorial-card:nth-child(1) { animation-delay: 0.7s; }
+        .tutorial-card:nth-child(2) { animation-delay: 0.8s; }
+        .tutorial-card:nth-child(3) { animation-delay: 0.9s; }
+        
+        .tutorial-card.landed {
+            animation: landingImpactRipple 0.8s ease-out;
+        }
+        
         .tutorial-card:active { 
             border-color: var(--accent); 
             background: rgba(20,40,70,0.7); 
@@ -447,8 +531,107 @@
             font-size: 0.9rem; 
             line-height: 1.4;
         }
-
+        
+        /* plain app prompt hero landing */
+        .plain-app-prompt {
+            text-align: center; 
+            font-size: 1.3rem; 
+            font-weight: 600; 
+            margin: 12px 0 10px;
+            background: rgba(0,0,0,0.25); 
+            backdrop-filter: blur(16px);
+            padding: 6px 18px; 
+            border-radius: 60px; 
+            display: inline-block;
+            border: 2px dashed var(--gold); 
+            color: #fffbe3; 
+            letter-spacing: 1px;
+            width: auto;
+            opacity: 0;
+            animation: superheroLandingDown 0.9s 0.45s forwards;
+            animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+        }
+        
+        .plain-app-prompt.landed {
+            animation: landingImpactRipple 0.8s ease-out;
+        }
+        
         @media (min-width: 768px) {
+            .plain-app-prompt { font-size: 1.8rem; padding: 8px 30px; }
+        }
+        .plain-app-prompt i { color: var(--gold); margin-right: 8px; }
+
+        .glow-on-click-btn i, 
+        .install-btn i { 
+            font-size: 1.8rem; 
+            color: white; 
+            filter: drop-shadow(0 2px 5px black);
+            min-width: 36px;
+            text-align: center;
+        }
+        
+        .btn-text { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start; 
+            line-height: 1.2; 
+            flex: 1;
+        }
+        .small-label { 
+            font-size: 0.65rem; 
+            opacity: 0.9; 
+            color: #fffdde; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px;
+        }
+        .main-label { 
+            font-size: 1rem; 
+            font-weight: 700; 
+            white-space: nowrap;
+        }
+        
+        /* ===== RIPPLE EFFECT FOR TOUCH ===== */
+        .touch-ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 70%);
+            transform: scale(0);
+            animation: touchRippleAnim 0.6s ease-out;
+            pointer-events: none;
+            z-index: 10;
+            mix-blend-mode: overlay;
+        }
+        
+        @keyframes touchRippleAnim {
+            0% { transform: scale(0); opacity: 0.8; }
+            100% { transform: scale(5); opacity: 0; }
+        }
+        
+        /* desktop adjustments */
+        @media (min-width: 768px) {
+            .quick-links-grid {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 16px;
+            }
+            .glow-on-click-btn {
+                flex: 1 1 180px;
+                max-width: 220px;
+                padding: 12px 10px;
+            }
+            .main-label { font-size: 1rem; }
+            
+            .install-grid {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .install-btn {
+                flex: 1 1 200px;
+                max-width: 240px;
+            }
+            
             .tutorial-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 18px;
@@ -501,6 +684,7 @@
         }
         button, a {
             touch-action: manipulation;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -515,9 +699,9 @@
                 </div>
             </div>
             <div class="action-buttons">
-                <button class="search-icon-btn" onclick="alert('🔍 search demo')"><i class="fas fa-search"></i></button>
+                <button class="search-icon-btn" id="searchBtn"><i class="fas fa-search"></i></button>
                 <div class="dropdown">
-                    <div class="menu-button">
+                    <div class="menu-button" id="menuBtn">
                         <div class="menu-line"></div><div class="menu-line"></div><div class="menu-line"></div>
                     </div>
                     <div class="dropdown-content">
@@ -553,14 +737,14 @@
         </div>
 
         <!-- Trending Movies heading -->
-        <div style="margin: 5px 0 5px;">
-            <div style="display: flex; align-items: center; gap: 8px; padding-left: 5px;">
-                <i class="fas fa-fire" style="color: var(--primary); font-size: 1.4rem;"></i>
-                <span style="color: white; font-size: 1.3rem; font-weight: 700; background: linear-gradient(145deg,#ffb3ba,#c0e0ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"> TRENDING MOVIES</span>
+        <div style="margin: 2px 0 2px;">
+            <div style="display: flex; align-items: center; gap: 5px; padding-left: 2px;">
+                <i class="fas fa-fire" style="color: var(--primary); font-size: 1.2rem;"></i>
+                <span style="color: white; font-size: 1.1rem; font-weight: 700; background: linear-gradient(145deg,#ffb3ba,#c0e0ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"> TRENDING NOW</span>
             </div>
         </div>
         
-        <!-- 3D coverflow - kam width, contain images -->
+        <!-- micro poster slider -->
         <div class="coverflow-wrapper">
             <div class="swiper" id="coverflowSwiper">
                 <div class="swiper-wrapper" id="swiperWrapper"></div>
@@ -573,21 +757,21 @@
             <div class="static-down-arrow">👇</div>
         </div>
 
-        <!-- four gradient buttons - column -->
+        <!-- four gradient buttons with superhero landing -->
         <div class="quick-links-grid">
-            <a href="https://t.me/sk4film" target="_blank" class="glow-on-click-btn">
+            <a href="https://t.me/sk4film" target="_blank" class="glow-on-click-btn" id="btn1">
                 <i class="fas fa-film"></i>
                 <div class="btn-text"><span class="small-label">telegram</span><span class="main-label">Latest Movies</span></div>
             </a>
-            <a href="https://t.me/+aH09R6aMoM81MWQ1" target="_blank" class="glow-on-click-btn">
+            <a href="https://t.me/+aH09R6aMoM81MWQ1" target="_blank" class="glow-on-click-btn" id="btn2">
                 <i class="fas fa-magnifying-glass"></i>
                 <div class="btn-text"><span class="small-label">search</span><span class="main-label">Search Movies</span></div>
             </a>
-            <a href="https://sk4film.vercel.app" target="_blank" class="glow-on-click-btn">
+            <a href="https://sk4film.vercel.app" target="_blank" class="glow-on-click-btn" id="btn3">
                 <i class="fas fa-globe"></i>
                 <div class="btn-text"><span class="small-label">website</span><span class="main-label">Movies Website</span></div>
             </a>
-            <a href="https://whatsapp.com/channel/0029Vb7IRSF89inj7Za3cQ0Y" target="_blank" class="glow-on-click-btn">
+            <a href="https://whatsapp.com/channel/0029Vb7IRSF89inj7Za3cQ0Y" target="_blank" class="glow-on-click-btn" id="btn4">
                 <i class="fab fa-whatsapp"></i>
                 <div class="btn-text"><span class="small-label">whatsapp</span><span class="main-label">Movies Channel</span></div>
             </a>
@@ -595,13 +779,13 @@
 
         <!-- plain app prompt -->
         <div style="text-align: center;">
-            <span class="plain-app-prompt"><i class="fa-brands fa-download"></i> INSTALL MOVIES APP</span>
+            <span class="plain-app-prompt" id="appPrompt"><i class="fa-brands fa-download"></i> INSTALL MOVIES APP</span>
         </div>
 
-        <!-- install buttons - column -->
+        <!-- install buttons with superhero landing -->
         <div class="install-grid">
-            <a href="https://github.com/sk4film/Web/releases/download/v1.0/SK4Film.apk" class="install-btn"><i class="fas fa-download"></i> Download Now</a>
-            <a href="https://www.mediafire.com/file/wq5t24hs04khdx6/SK4Film.apk/file" target="_blank" class="install-btn"><i class="fa-solid fa-fire"></i> MediaFire</a>
+            <a href="https://github.com/sk4film/Web/releases/download/v1.0/SK4Film.apk" class="install-btn" id="install1"><i class="fas fa-download"></i> Download Now</a>
+            <a href="https://www.mediafire.com/file/wq5t24hs04khdx6/SK4Film.apk/file" target="_blank" class="install-btn" id="install2"><i class="fa-solid fa-fire"></i> MediaFire</a>
         </div>
 
         <!-- ===== AD ZONE 2: VERTICAL ===== -->
@@ -618,21 +802,21 @@
             </div>
         </div>
 
-        <!-- tutorial cards -->
+        <!-- tutorial cards with superhero landing -->
         <div style="margin-top: 10px;">
-            <h2 style="color: var(--accent); text-align: center; font-size: 1.8rem; margin-bottom: 12px;"><i class="fas fa-play-circle me-2"></i>Tutorials</h2>
+            <h2 style="color: var(--accent); text-align: center; font-size: 1.6rem; margin-bottom: 12px;"><i class="fas fa-play-circle me-2"></i>Tutorials</h2>
             <div class="tutorial-grid">
-                <div class="tutorial-card">
+                <div class="tutorial-card" id="tut1">
                     <i class="fas fa-search"></i>
                     <h4>Search</h4>
                     <p>How to search movies efficiently inside telegram</p>
                 </div>
-                <div class="tutorial-card">
+                <div class="tutorial-card" id="tut2">
                     <i class="fas fa-link"></i>
                     <h4>StreamNet</h4>
                     <p>Watch via StreamNet link – full guide</p>
                 </div>
-                <div class="tutorial-card">
+                <div class="tutorial-card" id="tut3">
                     <i class="fas fa-disk"></i>
                     <h4>DiskWala</h4>
                     <p>Direct download from DiskWala link</p>
@@ -648,7 +832,7 @@
         </div>
     </div>
 
-    <!-- swiper and movie logic -->
+    <!-- swiper and movie logic + superhero impact effects -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         const BACKEND_URL = 'https://sk4film.koyeb.app';
@@ -660,9 +844,9 @@
                 const res = await fetch(`${BACKEND_URL}/api/movies`);
                 const data = await res.json();
                 let movies = (data.status === 'success' && data.movies) ? data.movies : [];
-                if (!movies.length) movies = Array(14).fill({ title: 'Demo', poster_url: '', year: '2025' });
+                if (!movies.length) movies = Array(16).fill({ title: 'Demo', poster_url: '', year: '2025' });
 
-                const firstBatch = movies.slice(0, 15);
+                const firstBatch = movies.slice(0, 16);
                 const wrapper = document.getElementById('swiperWrapper');
                 wrapper.innerHTML = firstBatch.map(m => {
                     const posterUrl = m.poster_url && m.poster_url.startsWith('http') ? m.poster_url : `${BACKEND_URL}/api/poster?title=${encodeURIComponent(m.title || 'unknown')}&year=${m.year || ''}`;
@@ -677,53 +861,41 @@
                     centeredSlides: true,
                     slidesPerView: 'auto',
                     loop: true,
-                    spaceBetween: 8,  // kam gap mobile me
+                    spaceBetween: 2,
                     autoplay: {
-                        delay: 2800,
+                        delay: 2600,
                         disableOnInteraction: false,
                         pauseOnMouseEnter: true
                     },
                     coverflowEffect: {
-                        rotate: 25,
+                        rotate: 20,
                         stretch: 0,
-                        depth: 100,
-                        modifier: 0.9,
+                        depth: 60,
+                        modifier: 0.7,
                         slideShadows: true
                     },
-                    speed: 600,
+                    speed: 500,
                     breakpoints: {
                         320: { 
-                            slidesPerView: 2.0,
-                            spaceBetween: 8,
-                            coverflowEffect: {
-                                rotate: 20,
-                                depth: 60,
-                                modifier: 0.8
-                            }
+                            slidesPerView: 2.4,
+                            spaceBetween: 2,
+                            coverflowEffect: { rotate: 15, depth: 40, modifier: 0.6 }
                         },
                         640: { 
-                            slidesPerView: 2.8,
-                            spaceBetween: 12,
-                            coverflowEffect: {
-                                rotate: 25,
-                                depth: 100,
-                                modifier: 1.0
-                            }
+                            slidesPerView: 3.2,
+                            spaceBetween: 4,
+                            coverflowEffect: { rotate: 18, depth: 70, modifier: 0.9 }
                         },
                         1024: { 
-                            slidesPerView: 3.8,
-                            spaceBetween: 18,
-                            coverflowEffect: {
-                                rotate: 20,
-                                depth: 150,
-                                modifier: 1.2
-                            }
+                            slidesPerView: 4.5,
+                            spaceBetween: 6,
+                            coverflowEffect: { rotate: 18, depth: 100, modifier: 1.0 }
                         }
                     }
                 });
             } catch (e) {
                 console.warn('fallback, using demo images');
-                const fake = ['Deadpool','Jawan','Animal','Dune2','Kung Fu Panda','Godzilla','Furiosa','Inside Out','Despicable','Twisters','Mad Max','Alien','Oppenheimer','Barbie','Batman'];
+                const fake = ['Deadpool','Jawan','Animal','Dune2','Kung Fu Panda','Godzilla','Furiosa','Inside Out','Despicable','Twisters','Mad Max','Alien','Oppenheimer','Barbie','Batman','Gladiator'];
                 document.getElementById('swiperWrapper').innerHTML = fake.map(t => `<div class="swiper-slide" onclick="handleMovieClick('${t}')"><img src="${FALLBACK_IMG}" alt=""></div>`).join('');
                 if (swiperInstance) swiperInstance.destroy(true, true);
                 swiperInstance = new Swiper('#coverflowSwiper', {
@@ -732,12 +904,37 @@
                     centeredSlides: true,
                     slidesPerView: 'auto',
                     loop: true,
-                    spaceBetween: 8,
+                    spaceBetween: 2,
                     autoplay: { delay: 2500, disableOnInteraction: false },
-                    coverflowEffect: { rotate: 25, stretch: 0, depth: 80, modifier: 0.9, slideShadows: true },
-                    speed: 600,
+                    coverflowEffect: { rotate: 18, stretch: 0, depth: 50, modifier: 0.7, slideShadows: true },
+                    speed: 500,
                 });
             }
+            
+            // After animations complete, add impact effect to each element
+            setTimeout(() => {
+                const animatedElements = [
+                    document.getElementById('btn1'),
+                    document.getElementById('btn2'),
+                    document.getElementById('btn3'),
+                    document.getElementById('btn4'),
+                    document.getElementById('install1'),
+                    document.getElementById('install2'),
+                    document.getElementById('tut1'),
+                    document.getElementById('tut2'),
+                    document.getElementById('tut3'),
+                    document.getElementById('appPrompt')
+                ];
+                
+                animatedElements.forEach(el => {
+                    if (el) {
+                        el.classList.add('landed');
+                        setTimeout(() => {
+                            el.classList.remove('landed');
+                        }, 1000);
+                    }
+                });
+            }, 1500); // Wait for all landing animations to complete
         }
         
         function handleMovieClick(title) { 
@@ -745,6 +942,94 @@
         }
         
         document.addEventListener('DOMContentLoaded', loadAll);
+
+        // ========== TOUCH RIPPLE EFFECT FOR ALL CLICKABLE ELEMENTS ==========
+        function createTouchRipple(event) {
+            const element = event.currentTarget;
+            
+            // remove any existing ripples
+            const existingRipple = element.querySelector('.touch-ripple');
+            if (existingRipple) existingRipple.remove();
+            
+            const ripple = document.createElement('span');
+            ripple.classList.add('touch-ripple');
+            
+            const rect = element.getBoundingClientRect();
+            let x, y;
+            
+            if (event.touches) {
+                // touch event
+                x = event.touches[0].clientX - rect.left;
+                y = event.touches[0].clientY - rect.top;
+            } else {
+                // mouse event
+                x = event.clientX - rect.left;
+                y = event.clientY - rect.top;
+            }
+            
+            const size = Math.max(rect.width, rect.height) * 1.2;
+            
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = (x - size/2) + 'px';
+            ripple.style.top = (y - size/2) + 'px';
+            
+            element.appendChild(ripple);
+            
+            // remove after animation
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+        }
+
+        // Add touch ripple to all buttons and links
+        document.addEventListener('DOMContentLoaded', function() {
+            const clickableElements = document.querySelectorAll(
+                '.glow-on-click-btn, .install-btn, .tutorial-card, .search-icon-btn, .menu-button, .dropdown-content a'
+            );
+            
+            clickableElements.forEach(element => {
+                element.addEventListener('click', function(e) {
+                    createTouchRipple(e);
+                    
+                    // for links, we need to handle navigation after ripple
+                    if (element.tagName === 'A' && element.getAttribute('target') !== '_blank' && !element.getAttribute('onclick')) {
+                        e.preventDefault();
+                        setTimeout(() => {
+                            window.location.href = element.href;
+                        }, 200);
+                    }
+                });
+                
+                element.addEventListener('touchstart', function(e) {
+                    createTouchRipple(e);
+                }, { passive: true });
+            });
+            
+            // special for search button
+            document.getElementById('searchBtn').addEventListener('click', function(e) {
+                createTouchRipple(e);
+                setTimeout(() => alert('🔍 search demo'), 200);
+            });
+            
+            document.getElementById('menuBtn').addEventListener('click', function(e) {
+                createTouchRipple(e);
+                const dropdown = document.querySelector('.dropdown-content');
+                if (window.innerWidth <= 768) {
+                    if (dropdown.style.display === 'flex') {
+                        dropdown.style.display = 'none';
+                    } else {
+                        dropdown.style.display = 'flex';
+                    }
+                }
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown')) {
+                    document.querySelector('.dropdown-content').style.display = 'none';
+                }
+            });
+        });
     </script>
 </body>
 </html>
