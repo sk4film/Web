@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SK4FiLM • responsive only one ad</title>
-    <!-- Font Awesome 6, premium fonts, swiper -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         :root {
             --primary: #ff0040;
             --secondary: #2a7fff;
@@ -22,9 +21,13 @@
             background: radial-gradient(circle at 30% 10%, #141b2b, #03050b);
             font-family: 'Outfit', sans-serif;
             color: #f0f4ff;
-            padding-top: 80px;
+            padding-top: 70px;
             min-height: 100vh;
             letter-spacing: 0.3px;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100%;
+            -webkit-text-size-adjust: 100%;
         }
         body::before {
             content: ''; position: fixed; inset:0;
@@ -32,7 +35,7 @@
             backdrop-filter: blur(2px);
             z-index: -1;
         }
-        /* ----- top navbar (premium glass) ----- */
+        /* ----- top navbar ----- */
         .top-navbar {
             position: fixed; top:0; left:0; right:0; z-index: 1000;
             background: rgba(8, 12, 25, 0.7);
@@ -40,72 +43,80 @@
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid rgba(0, 242, 254, 0.25);
             box-shadow: 0 10px 35px -5px rgba(0,0,0,0.5);
-            padding: 6px 0;
+            padding: 4px 0;
         }
         .navbar-content {
-            max-width: 1400px; margin: 0 auto; padding: 0 25px;
+            max-width: 1400px; margin: 0 auto; padding: 0 15px;
             display: flex; align-items: center; justify-content: space-between;
         }
-        .logo-section { display: flex; align-items: center; gap: 12px; }
+        .logo-section { display: flex; align-items: center; gap: 8px; }
         .logo-img {
-            height: 48px; width: 48px; border-radius: 16px;
+            height: 40px; width: 40px; border-radius: 12px;
             object-fit: cover; border: 2px solid var(--accent);
-            box-shadow: 0 0 20px rgba(0,242,254,0.4);
+            box-shadow: 0 0 15px rgba(0,242,254,0.4);
         }
         .brand-text {
             font-family: 'Syncopate', sans-serif; font-weight: 700;
-            font-size: 1.5rem; letter-spacing: 1px;
+            font-size: 1.2rem; letter-spacing: 0.5px;
             background: linear-gradient(135deg, #fff4b0, #ffb3c6, #a0d2ff);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
         .brand-subtitle {
-            font-size: 0.65rem; color: var(--accent); text-transform: uppercase;
-            letter-spacing: 3px; margin-top: -4px;
+            font-size: 0.55rem; color: var(--accent); text-transform: uppercase;
+            letter-spacing: 2px; margin-top: -2px;
         }
-        .action-buttons { display: flex; gap: 15px; align-items: center; }
+        .action-buttons { display: flex; gap: 10px; align-items: center; }
         .search-icon-btn {
-            width: 48px; height: 48px; border-radius: 40% 60% 40% 60% / 50% 40% 60% 50%;
+            width: 40px; height: 40px; border-radius: 40% 60% 40% 60% / 50% 40% 60% 50%;
             background: linear-gradient(145deg, var(--primary), #b5006d);
-            border: none; color: white; font-size: 1.3rem;
-            cursor: pointer; transition: 0.25s; box-shadow: 0 0 20px #ff0040;
+            border: none; color: white; font-size: 1.1rem;
+            cursor: pointer; transition: 0.25s; box-shadow: 0 0 15px #ff0040;
             display: flex; align-items: center; justify-content: center;
         }
-        .search-icon-btn:hover { transform: rotate(8deg) scale(1.07); }
+        .search-icon-btn:active { transform: scale(0.95); }
         .dropdown { position: relative; }
         .menu-button {
-            width: 48px; height: 48px; border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%;
+            width: 40px; height: 40px; border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%;
             background: rgba(0,242,254,0.08); border: 2px solid var(--accent);
-            display: flex; flex-direction: column; gap: 5px;
+            display: flex; flex-direction: column; gap: 4px;
             align-items: center; justify-content: center; cursor: pointer;
-            transition: 0.25s; box-shadow: 0 0 15px var(--accent);
+            transition: 0.25s; box-shadow: 0 0 10px var(--accent);
         }
-        .menu-line { width: 18px; height: 2px; background: white; border-radius: 5px; }
-        .menu-button:hover { background: rgba(0,242,254,0.2); transform: scale(1.02); }
+        .menu-line { width: 16px; height: 2px; background: white; border-radius: 5px; }
+        .menu-button:active { background: rgba(0,242,254,0.2); transform: scale(0.95); }
         .dropdown-content {
-            position: absolute; top: 60px; right: 0; min-width: 240px;
-            background: rgba(8, 15, 30, 0.85); backdrop-filter: blur(30px);
-            border: 1.5px solid var(--accent); border-radius: 40px;
-            padding: 15px 8px; display: none; flex-direction: column; gap: 6px;
-            box-shadow: 0 30px 50px rgba(0,0,0,0.7); z-index: 1001;
+            position: absolute; top: 50px; right: 0; min-width: 200px;
+            background: rgba(8, 15, 30, 0.95); backdrop-filter: blur(30px);
+            border: 1.5px solid var(--accent); border-radius: 30px;
+            padding: 12px 6px; display: none; flex-direction: column; gap: 4px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8); z-index: 1001;
         }
         .dropdown-content a {
-            color: white; padding: 12px 22px; text-decoration: none;
-            display: flex; align-items: center; gap: 18px; font-size: 1.2rem;
-            border-radius: 60px; transition: 0.2s; border: 1px solid transparent;
+            color: white; padding: 10px 16px; text-decoration: none;
+            display: flex; align-items: center; gap: 12px; font-size: 1rem;
+            border-radius: 40px; transition: 0.2s; border: 1px solid transparent;
         }
-        .dropdown-content a i { width: 28px; font-size: 1.6rem; color: gold; }
-        .dropdown-content a:hover {
-            background: rgba(0,242,254,0.15); border-color: var(--accent);
-            transform: translateX(8px);
+        .dropdown-content a i { width: 22px; font-size: 1.3rem; color: gold; }
+        .dropdown-content a:active {
+            background: rgba(0,242,254,0.2); border-color: var(--accent);
         }
         .dropdown:hover .dropdown-content { display: flex; }
+        @media (max-width: 768px) {
+            .dropdown-content { width: 200px; right: 0; left: auto; }
+        }
 
-        .container { max-width: 1300px; margin: 0 auto; padding: 0 20px; }
+        .container { 
+            max-width: 1300px; 
+            margin: 0 auto; 
+            padding: 0 12px; 
+            width: 100%;
+            overflow-x: hidden;
+        }
 
-        /* ========== AD ZONES – RESPONSIVE: ONLY ONE SHOWN PER SCREEN SIZE ========== */
+        /* ========== AD ZONES ========== */
         .ad-spot {
             background: rgba(0,0,0,0.2);
-            border-radius: 24px;
+            border-radius: 20px;
             backdrop-filter: blur(10px);
             border: 1px solid var(--glass-edge);
             box-shadow: 0 12px 25px rgba(0,0,0,0.4);
@@ -116,182 +127,389 @@
             transition: 0.2s;
             margin: 0;
         }
-        /* top ad container: both ads present, but only one visible based on screen */
         .top-ad-container {
             display: flex; flex-wrap: wrap; justify-content: center;
-            align-items: center; gap: 15px; margin: 10px 0 20px 0;
+            align-items: center; gap: 10px; margin: 8px 0 15px 0;
         }
         .mobile-ad {
             min-width: 300px;
             min-height: 55px;
-            display: block;  /* visible by default (mobile first) */
+            display: block;
         }
         .desktop-ad-leader {
             min-width: 300px;
             min-height: 90px;
-            display: none;   /* hidden on mobile */
+            display: none;
         }
-        /* switch at 768px: hide mobile, show desktop */
         @media (min-width: 768px) {
-            .mobile-ad {
-                display: none;
-            }
-            .desktop-ad-leader {
-                display: block;
-                min-width: 728px;
-            }
+            .mobile-ad { display: none; }
+            .desktop-ad-leader { display: block; min-width: 728px; }
         }
 
-        /* vertical ad (300x900) – shown only on mobile (<768px) */
         .ad-vertical-container {
-            display: flex; justify-content: center; margin: 15px 0 15px;
+            display: flex; justify-content: center; margin: 12px 0 12px;
         }
         .vertical-ad {
             width: 300px; min-height: 270px;
             background: transparent;
-            display: block;  /* visible on mobile */
+            display: block;
         }
-        /* horizontal adaptive (for desktop) – hidden on mobile */
         .ad-horizontal-container {
-            display: flex; justify-content: center; margin: 15px 0 15px;
+            display: flex; justify-content: center; margin: 12px 0 12px;
         }
         .horizontal-ad {
             width: 100%; max-width: 728px; min-height: 90px;
             background: transparent;
-            display: none;   /* hidden on mobile */
-        }
-        @media (min-width: 768px) {
-            .vertical-ad {
-                display: none;   /* hide vertical on desktop */
-            }
-            .horizontal-ad {
-                display: flex;    /* show horizontal on desktop */
-            }
-        }
-
-        /* 3D coverflow */
-        .coverflow-wrapper {
-            position: relative; margin: 20px 0 20px; padding: 0 35px;
-        }
-        .swiper {
-            width: 100%; padding: 45px 0 60px;
-        }
-        .swiper-slide {
-            background: #111; width: 260px; height: 360px;
-            border-radius: 24px; overflow: hidden;
-            border: 3px solid rgba(255,255,255,0.15);
-            box-shadow: 0 25px 50px -5px black;
-            transition: border 0.2s, box-shadow 0.3s;
-            cursor: pointer;
-        }
-        .swiper-slide:hover {
-            border-color: var(--accent); box-shadow: 0 20px 50px var(--accent);
-        }
-        .swiper-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        /* hide swiper buttons as requested */
-        .swiper-button-prev-custom, .swiper-button-next-custom {
             display: none;
         }
+        @media (min-width: 768px) {
+            .vertical-ad { display: none; }
+            .horizontal-ad { display: flex; }
+        }
 
-        /* main prompt – removed hand icons, kept arrow */
+        /* ========== SLIDER – PROPER IMAGE FIT, KAM WIDTH ========== */
+        .coverflow-wrapper {
+            position: relative; margin: 15px 0 15px; padding: 0 5px;
+            width: 100%;
+            overflow: visible;
+        }
+        .swiper {
+            width: 100%;
+            padding: 25px 0 40px;
+            overflow: visible;
+        }
+        
+        /* slide ke beech gap */
+        .swiper-wrapper {
+            gap: 8px;  /* chhota gap mobile ke liye */
+        }
+        
+        .swiper-slide {
+            width: 90px;          /* chhota poster */
+            aspect-ratio: 2 / 3;  /* poster ratio */
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.25);
+            box-shadow: 0 12px 20px -8px rgba(0,0,0,0.8);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            opacity: 0.7;
+            transform: scale(0.85);
+            filter: blur(0.5px);
+            margin: 0 !important;
+        }
+        
+        /* image proper fit - NO STRETCH */
+        .swiper-slide img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: contain;  /* contain use kiya taaki pura image dikhe, stretch na ho */
+            object-position: center;
+            display: block; 
+            pointer-events: none;
+        }
+        
+        /* center slide bada, bright, no blur */
+        .swiper-slide-active {
+            transform: scale(1.2) !important;  /* thoda aur highlight */
+            opacity: 1;
+            border-color: var(--accent);
+            box-shadow: 0 15px 30px var(--accent);
+            border-width: 3px;
+            filter: blur(0);
+            z-index: 10;
+        }
+        
+        /* adjacent slides */
+        .swiper-slide-prev, .swiper-slide-next {
+            transform: scale(0.95);
+            opacity: 0.85;
+            filter: blur(0.3px);
+        }
+        
+        /* desktop ke liye bigger slides */
+        @media (min-width: 768px) {
+            .swiper-wrapper {
+                gap: 15px;
+            }
+            .swiper-slide {
+                width: 160px;      /* desktop me bhi kam width */
+                height: 220px;
+                border-radius: 20px;
+                transform: scale(0.9);
+            }
+            .swiper-slide-active {
+                transform: scale(1.2) !important;
+            }
+            .swiper-slide-prev, .swiper-slide-next {
+                transform: scale(1.0);
+            }
+        }
+        
+        /* main prompt text */
         .main-prompt-text {
             display: flex; flex-direction: column; align-items: center;
-            margin: 10px 0 10px;
+            margin: 5px 0 5px;
         }
         .big-static-line {
-            font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 2.1rem;
+            font-family: 'Outfit', sans-serif; font-weight: 800; 
+            font-size: 1.3rem;
             background: linear-gradient(135deg, #ffffff, #fde8b3, #b5dcff);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             display: inline-flex; flex-wrap: wrap; justify-content: center;
-            align-items: center; gap: 15px; text-align: center; line-height: 1.2;
+            align-items: center; gap: 8px; text-align: center; line-height: 1.2;
         }
-        /* hand icons removed – we keep only the text ULTIMATE SK4FiLM HUB */
-        .static-down-arrow { font-size: 2.8rem; color: #90e0ff; filter: drop-shadow(0 4px 6px black); animation: bounceSoft 2s infinite; }
-        @keyframes bounceSoft { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(12px); } }
+        @media (min-width: 768px) {
+            .big-static-line { font-size: 2.1rem; }
+        }
+        
+        .static-down-arrow { font-size: 1.8rem; color: #90e0ff; filter: drop-shadow(0 4px 6px black); animation: bounceSoft 2s infinite; }
+        @media (min-width: 768px) { .static-down-arrow { font-size: 2.8rem; } }
+        @keyframes bounceSoft { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(8px); } }
 
-        /* gradient buttons unchanged */
+        /* ===== MOBILE BUTTONS - COLUMN ===== */
         .quick-links-grid {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 16px;
-            margin: 20px 0 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin: 15px 0 15px;
+            width: 100%;
         }
         .glow-on-click-btn {
-            flex: 1 1 220px; max-width: 260px; min-width: 200px;
-            padding: 16px 14px; border-radius: 60px; display: inline-flex;
-            align-items: center; gap: 12px; border: 2px solid rgba(255,255,255,0.15);
-            text-decoration: none; color: white; font-weight: 600;
-            backdrop-filter: blur(20px); box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-            transition: 0.2s ease; background-origin: border-box;
+            width: 100%;
+            max-width: 320px;
+            padding: 14px 18px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 2px solid rgba(255,255,255,0.15);
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+            transition: 0.2s ease;
+            background-origin: border-box;
         }
         .glow-on-click-btn:nth-child(1) { background: linear-gradient(135deg, #ff3b5c, #b2258f); border-color: #ffccdd; }
         .glow-on-click-btn:nth-child(2) { background: linear-gradient(145deg, #3c6eff, #9422c0); border-color: #b8aaff; }
         .glow-on-click-btn:nth-child(3) { background: linear-gradient(225deg, #fa8f21, #d7269e); border-color: #ffc285; }
         .glow-on-click-btn:nth-child(4) { background: linear-gradient(90deg, #0ba3e5, #10d57a); border-color: #aaffdd; }
-        .glow-on-click-btn i { font-size: 2rem; color: white; filter: drop-shadow(0 2px 5px black); }
-        .btn-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2; }
-        .small-label { font-size: 0.7rem; opacity: 0.85; color: #fffdde; text-transform: uppercase; }
-        .main-label { font-size: 1.1rem; font-weight: 700; white-space: nowrap; }
-        .glow-on-click-btn:active { transform: scale(0.96); filter: brightness(1.2); border-color: white; }
+        .glow-on-click-btn i { 
+            font-size: 2rem; 
+            color: white; 
+            filter: drop-shadow(0 2px 5px black);
+            min-width: 40px;
+            text-align: center;
+        }
+        .btn-text { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: flex-start; 
+            line-height: 1.2; 
+            flex: 1;
+        }
+        .small-label { 
+            font-size: 0.7rem; 
+            opacity: 0.9; 
+            color: #fffdde; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px;
+        }
+        .main-label { 
+            font-size: 1.1rem; 
+            font-weight: 700; 
+            white-space: nowrap;
+        }
+        .glow-on-click-btn:active { 
+            transform: scale(0.97); 
+            filter: brightness(1.2); 
+            border-color: white; 
+        }
+
+        @media (min-width: 768px) {
+            .quick-links-grid {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 16px;
+            }
+            .glow-on-click-btn {
+                flex: 1 1 200px;
+                max-width: 240px;
+                padding: 14px 12px;
+            }
+            .main-label { font-size: 1rem; }
+        }
 
         /* plain app prompt */
         .plain-app-prompt {
-            text-align: center; font-size: 2rem; font-weight: 600; margin: 20px 0 15px;
-            background: rgba(0,0,0,0.25); backdrop-filter: blur(16px);
-            padding: 10px 35px; border-radius: 90px; display: inline-block;
-            border: 2px dashed var(--gold); color: #fffbe3; letter-spacing: 2px;
+            text-align: center; 
+            font-size: 1.4rem; 
+            font-weight: 600; 
+            margin: 15px 0 12px;
+            background: rgba(0,0,0,0.25); 
+            backdrop-filter: blur(16px);
+            padding: 8px 20px; 
+            border-radius: 60px; 
+            display: inline-block;
+            border: 2px dashed var(--gold); 
+            color: #fffbe3; 
+            letter-spacing: 1px;
+            width: auto;
         }
-        .plain-app-prompt i { color: var(--gold); margin-right: 10px; }
+        @media (min-width: 768px) {
+            .plain-app-prompt { font-size: 2rem; padding: 10px 35px; }
+        }
+        .plain-app-prompt i { color: var(--gold); margin-right: 8px; }
 
-        /* install buttons */
+        /* install buttons - column */
         .install-grid {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
             margin: 10px 0 20px;
+            width: 100%;
         }
         .install-btn {
-            flex: 1 1 240px; max-width: 280px; padding: 18px 28px; border-radius: 80px;
-            display: inline-flex; align-items: center; justify-content: center; gap: 15px;
-            background: linear-gradient(145deg, #b523c7, #313bac); border: 2px solid rgba(255,255,255,0.3);
-            text-decoration: none; color: white; font-size: 1.3rem; font-weight: 700;
-            backdrop-filter: blur(10px); box-shadow: 0 20px 30px -5px #00000080;
+            width: 100%;
+            max-width: 320px;
+            padding: 14px 20px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(145deg, #b523c7, #313bac);
+            border: 2px solid rgba(255,255,255,0.3);
+            text-decoration: none;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 25px -5px #00000080;
             transition: 0.2s;
         }
         .install-btn:first-child { background: linear-gradient(225deg, #ff8c2e, #d5006b); }
         .install-btn:last-child { background: linear-gradient(300deg, #00b0c8, #5f2bb3); }
-        .install-btn i { font-size: 2.2rem; color: #fff4b0; }
+        .install-btn i { font-size: 1.8rem; color: #fff4b0; }
         .install-btn:active { transform: scale(0.97); border-color: white; }
+
+        @media (min-width: 768px) {
+            .install-grid {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .install-btn {
+                flex: 1 1 220px;
+                max-width: 260px;
+            }
+        }
 
         /* tutorial cards */
         .tutorial-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 22px; margin: 20px 0 25px;
+            display: grid; 
+            grid-template-columns: 1fr;
+            gap: 15px; 
+            margin: 15px 0 20px;
         }
         .tutorial-card {
-            background: rgba(12, 22, 40, 0.5); backdrop-filter: blur(20px);
-            border-radius: 40px; padding: 30px 20px; text-align: center;
-            border: 2px solid rgba(0,242,254,0.3); transition: 0.25s;
+            background: rgba(12, 22, 40, 0.5); 
+            backdrop-filter: blur(20px);
+            border-radius: 30px; 
+            padding: 20px 15px; 
+            text-align: center;
+            border: 2px solid rgba(0,242,254,0.3); 
+            transition: 0.25s;
         }
-        .tutorial-card:hover { border-color: var(--accent); background: rgba(20,40,70,0.5); transform: translateY(-5px); }
-        .tutorial-card i { font-size: 3.5rem; background: linear-gradient(45deg, gold, #ffb347); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 18px; }
-        .tutorial-card h4 { color: var(--accent); font-size: 1.8rem; margin-bottom: 12px; }
-        .tutorial-card p { color: #eef3ff; }
+        .tutorial-card:active { 
+            border-color: var(--accent); 
+            background: rgba(20,40,70,0.7); 
+            transform: scale(0.98); 
+        }
+        .tutorial-card i { 
+            font-size: 2.5rem; 
+            background: linear-gradient(45deg, gold, #ffb347); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            margin-bottom: 12px; 
+        }
+        .tutorial-card h4 { 
+            color: var(--accent); 
+            font-size: 1.4rem; 
+            margin-bottom: 8px; 
+        }
+        .tutorial-card p { 
+            color: #eef3ff; 
+            font-size: 0.9rem; 
+            line-height: 1.4;
+        }
+
+        @media (min-width: 768px) {
+            .tutorial-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 18px;
+            }
+        }
 
         /* footer bar */
         .footer-bar {
-            background: rgba(0,0,0,0.3); backdrop-filter: blur(25px);
-            border-radius: 70px 70px 0 0; border-top: 4px solid var(--primary);
-            padding: 35px 25px 20px; margin-top: 40px;
-            display: flex; flex-wrap: wrap; justify-content: space-between;
-            align-items: center; gap: 20px; color: #e3ecff;
+            background: rgba(0,0,0,0.3); 
+            backdrop-filter: blur(25px);
+            border-radius: 40px 40px 0 0; 
+            border-top: 4px solid var(--primary);
+            padding: 25px 15px 20px; 
+            margin-top: 30px;
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            gap: 15px; 
+            color: #e3ecff;
+            text-align: center;
         }
-        .terms a { color: var(--accent); text-decoration: none; margin: 0 15px; font-weight: 500; }
-        .dev { font-size: 1.7rem; background: linear-gradient(145deg, gold, #ffae70); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
-        /* visitor counter removed */
+        .terms a { 
+            color: var(--accent); 
+            text-decoration: none; 
+            margin: 0 10px; 
+            font-weight: 500;
+            display: inline-block;
+            padding: 5px;
+        }
+        .dev { 
+            font-size: 1.3rem; 
+            background: linear-gradient(145deg, gold, #ffae70); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            font-weight: 800; 
+        }
+
+        @media (min-width: 768px) {
+            .footer-bar {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 30px 20px 20px;
+                text-align: left;
+            }
+        }
+
+        img, svg, video, canvas, iframe {
+            max-width: 100%;
+            height: auto;
+        }
+        button, a {
+            touch-action: manipulation;
+        }
     </style>
 </head>
 <body>
     <nav class="top-navbar">
         <div class="navbar-content">
             <div class="logo-section">
-                <img src="https://iili.io/KOlfc41.png" alt="SK4FiLM" class="logo-img" onerror="this.src='https://via.placeholder.com/48?text=SK'">
+                <img src="https://iili.io/KOlfc41.png" alt="SK4FiLM" class="logo-img" onerror="this.src='https://via.placeholder.com/40?text=SK'">
                 <div>
                     <div class="brand-text">SK4FiLM</div>
                     <div class="brand-subtitle">House of Entertainment</div>
@@ -316,9 +534,8 @@
     </nav>
 
     <div class="container">
-        <!-- ===== DUAL ADS TOP: only one visible per screen (mobile 320x50 / desktop 728x90) ===== -->
+        <!-- ===== DUAL ADS TOP ===== -->
         <div class="top-ad-container">
-            <!-- Mobile ad 320x50 -->
             <div class="ad-spot mobile-ad">
                 <script>
                     atOptions = {
@@ -331,33 +548,33 @@
                 </script>
                 <script src="https://marksdespitelinear.com/216fbe302aed8bf326047982efbaaf02/invoke.js"></script>
             </div>
-            <!-- Desktop ad 728x90 -->
             <div class="ad-spot desktop-ad-leader">
                 <script async src="https://js.onclckmn.com/static/onclicka.js" data-admpid="429588"></script>
             </div>
         </div>
 
-        <!-- 3D coverflow -->
+        <!-- Trending Movies heading -->
         <div style="margin: 5px 0 5px;">
-            <div style="display: flex; align-items: center; gap: 15px; padding-left: 8px;">
-                <i class="fas fa-fire" style="color: var(--primary); font-size: 2.2rem;"></i>
-                <span style="color: white; font-size: 2rem; font-weight: 700; background: linear-gradient(145deg,#ffb3ba,#c0e0ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"> TRENDING MOVIES</span>
+            <div style="display: flex; align-items: center; gap: 8px; padding-left: 5px;">
+                <i class="fas fa-fire" style="color: var(--primary); font-size: 1.4rem;"></i>
+                <span style="color: white; font-size: 1.3rem; font-weight: 700; background: linear-gradient(145deg,#ffb3ba,#c0e0ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"> TRENDING MOVIES</span>
             </div>
         </div>
+        
+        <!-- 3D coverflow - kam width, contain images -->
         <div class="coverflow-wrapper">
             <div class="swiper" id="coverflowSwiper">
                 <div class="swiper-wrapper" id="swiperWrapper"></div>
             </div>
-            <!-- navigation buttons hidden via CSS -->
         </div>
 
-        <!-- main prompt – hand icons removed -->
+        <!-- main prompt -->
         <div class="main-prompt-text">
             <span class="big-static-line">⚡ ULTIMATE SK4FiLM HUB</span>
             <div class="static-down-arrow">👇</div>
         </div>
 
-        <!-- four gradient buttons -->
+        <!-- four gradient buttons - column -->
         <div class="quick-links-grid">
             <a href="https://t.me/sk4film" target="_blank" class="glow-on-click-btn">
                 <i class="fas fa-film"></i>
@@ -382,20 +599,20 @@
             <span class="plain-app-prompt"><i class="fa-brands fa-download"></i> INSTALL MOVIES APP</span>
         </div>
 
-        <!-- install buttons -->
+        <!-- install buttons - column -->
         <div class="install-grid">
             <a href="https://github.com/sk4film/Web/releases/download/v1.0/SK4Film.apk" class="install-btn"><i class="fas fa-download"></i> Download Now</a>
             <a href="https://www.mediafire.com/file/wq5t24hs04khdx6/SK4Film.apk/file" target="_blank" class="install-btn"><i class="fa-solid fa-fire"></i> MediaFire</a>
         </div>
 
-        <!-- ===== AD ZONE 2: VERTICAL (300x900) shown only on mobile, hidden on desktop ===== -->
+        <!-- ===== AD ZONE 2: VERTICAL ===== -->
         <div class="ad-vertical-container">
             <div class="ad-spot vertical-ad" style="min-height: 270px; width: 300px;">
                 <script async src="https://js.onclckmn.com/static/onclicka.js" data-admpid="429593"></script>
             </div>
         </div>
 
-        <!-- ===== AD ZONE 3: HORIZONTAL ADAPTIVE shown only on desktop, hidden on mobile ===== -->
+        <!-- ===== AD ZONE 3: HORIZONTAL ===== -->
         <div class="ad-horizontal-container">
             <div class="ad-spot horizontal-ad" style="min-height: 90px;">
                 <script async src="https://js.onclckmn.com/static/onclicka.js" data-admpid="429611"></script>
@@ -404,7 +621,7 @@
 
         <!-- tutorial cards -->
         <div style="margin-top: 10px;">
-            <h2 style="color: var(--accent); text-align: center; font-size: 2.5rem; margin-bottom: 20px;"><i class="fas fa-play-circle me-2"></i>Tutorials</h2>
+            <h2 style="color: var(--accent); text-align: center; font-size: 1.8rem; margin-bottom: 12px;"><i class="fas fa-play-circle me-2"></i>Tutorials</h2>
             <div class="tutorial-grid">
                 <div class="tutorial-card">
                     <i class="fas fa-search"></i>
@@ -432,8 +649,6 @@
         </div>
     </div>
 
-    <!-- visitor counter removed -->
-
     <!-- swiper and movie logic -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
@@ -452,23 +667,59 @@
                 const wrapper = document.getElementById('swiperWrapper');
                 wrapper.innerHTML = firstBatch.map(m => {
                     const posterUrl = m.poster_url && m.poster_url.startsWith('http') ? m.poster_url : `${BACKEND_URL}/api/poster?title=${encodeURIComponent(m.title || 'unknown')}&year=${m.year || ''}`;
-                    return `<div class="swiper-slide" onclick="handleMovieClick('${(m.title || 'movie').replace(/'/g, "\\'")}')"><img src="${posterUrl}" alt="" onerror="this.src='${FALLBACK_IMG}'"></div>`;
+                    return `<div class="swiper-slide" onclick="handleMovieClick('${(m.title || 'movie').replace(/'/g, "\\'")}')"><img src="${posterUrl}" alt="" loading="lazy" onerror="this.src='${FALLBACK_IMG}'"></div>`;
                 }).join('');
 
                 if (swiperInstance) swiperInstance.destroy(true, true);
+                
                 swiperInstance = new Swiper('#coverflowSwiper', {
                     effect: 'coverflow',
                     grabCursor: true,
                     centeredSlides: true,
                     slidesPerView: 'auto',
                     loop: true,
-                    autoplay: { delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true },
-                    coverflowEffect: { rotate: 30, stretch: 0, depth: 150, modifier: 1.5, slideShadows: true },
-                    speed: 800,
+                    spaceBetween: 8,  // kam gap mobile me
+                    autoplay: {
+                        delay: 2800,
+                        disableOnInteraction: false,
+                        pauseOnMouseEnter: true
+                    },
+                    coverflowEffect: {
+                        rotate: 25,
+                        stretch: 0,
+                        depth: 100,
+                        modifier: 0.9,
+                        slideShadows: true
+                    },
+                    speed: 600,
                     breakpoints: {
-                        320: { slidesPerView: 1.5, coverflowEffect: { rotate: 40, depth: 100 } },
-                        640: { slidesPerView: 2.5, coverflowEffect: { rotate: 30, depth: 150 } },
-                        1024: { slidesPerView: 3.5, coverflowEffect: { rotate: 20, depth: 200 } }
+                        320: { 
+                            slidesPerView: 2.0,
+                            spaceBetween: 8,
+                            coverflowEffect: {
+                                rotate: 20,
+                                depth: 60,
+                                modifier: 0.8
+                            }
+                        },
+                        640: { 
+                            slidesPerView: 2.8,
+                            spaceBetween: 12,
+                            coverflowEffect: {
+                                rotate: 25,
+                                depth: 100,
+                                modifier: 1.0
+                            }
+                        },
+                        1024: { 
+                            slidesPerView: 3.8,
+                            spaceBetween: 18,
+                            coverflowEffect: {
+                                rotate: 20,
+                                depth: 150,
+                                modifier: 1.2
+                            }
+                        }
                     }
                 });
             } catch (e) {
@@ -477,16 +728,24 @@
                 document.getElementById('swiperWrapper').innerHTML = fake.map(t => `<div class="swiper-slide" onclick="handleMovieClick('${t}')"><img src="${FALLBACK_IMG}" alt=""></div>`).join('');
                 if (swiperInstance) swiperInstance.destroy(true, true);
                 swiperInstance = new Swiper('#coverflowSwiper', {
-                    effect: 'coverflow', grabCursor: true, centeredSlides: true, slidesPerView: 'auto',
-                    loop: true, autoplay: { delay: 2500, disableOnInteraction: false, pauseOnMouseEnter: true },
-                    coverflowEffect: { rotate: 30, stretch: 0, depth: 150, modifier: 1.5, slideShadows: true },
-                    speed: 800,
+                    effect: 'coverflow',
+                    grabCursor: true,
+                    centeredSlides: true,
+                    slidesPerView: 'auto',
+                    loop: true,
+                    spaceBetween: 8,
+                    autoplay: { delay: 2500, disableOnInteraction: false },
+                    coverflowEffect: { rotate: 25, stretch: 0, depth: 80, modifier: 0.9, slideShadows: true },
+                    speed: 600,
                 });
             }
         }
-        function handleMovieClick(title) { window.location.href = `search.html?query=${encodeURIComponent(title)}`; }
+        
+        function handleMovieClick(title) { 
+            window.location.href = `search.html?query=${encodeURIComponent(title)}`; 
+        }
+        
         document.addEventListener('DOMContentLoaded', loadAll);
     </script>
-    <!-- no visitor counter script -->
 </body>
 </html>
