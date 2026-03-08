@@ -719,11 +719,12 @@
                 el.addEventListener('touchstart', createTouchRipple, { passive: true });
             });
 
-            // Search button opens search page with empty query (or you can prompt)
+            document.getElementById('searchBtn').addEventListener('click', function(e) {
+                createTouchRipple(e);
+                // Search button opens search page with empty query (or you can prompt)
                 window.location.href = 'https://sk4film.vercel.app/search.html?query=';
             });
 
-            // Menu button for mobile
             document.getElementById('menuBtn').addEventListener('click', function(e) {
                 createTouchRipple(e);
                 const dropdown = document.querySelector('.dropdown-content');
