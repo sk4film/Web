@@ -452,7 +452,7 @@
         <div style="margin: 5px 0;">
             <div style="display: flex; align-items: center; gap: 5px;">
                 <i class="fas fa-fire" style="color: var(--primary);"></i>
-                <span style="font-weight: 700; background: linear-gradient(145deg,#ffb3ba,#c0e0ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"> TRENDING NOW</span>
+                <span style="font-weight: 700; background: linear-gradient(145deg,#ffb3ba,#c0e0ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"> NOW TRENDING MOVIES</span>
             </div>
         </div>
         
@@ -465,8 +465,8 @@
 
         <!-- main prompt -->
         <div class="main-prompt-text">
-            <span class="big-static-line">⚡ ULTIMATE SK4FiLM HUB</span>
-            <div class="static-down-arrow">👇</div>
+            <span class="big-static-line">⚡ चैनल Join करो और Enjoy करो</span>
+            <div class="static-down-arrow">⇩</div>
         </div>
 
         <!-- four gradient buttons - ORIGINAL COLORS & ANIMATIONS PRESERVED -->
@@ -719,10 +719,8 @@
                 el.addEventListener('touchstart', createTouchRipple, { passive: true });
             });
 
-            // Search button - ORIGINAL FUNCTION (alert demo)
-            document.getElementById('searchBtn').addEventListener('click', function(e) {
-                createTouchRipple(e);
-                setTimeout(() => alert('🔍 search demo'), 200);
+            // Search button opens search page with empty query (or you can prompt)
+                window.location.href = 'https://sk4film.vercel.app/search.html?query=';
             });
 
             // Menu button for mobile
