@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Syncopate:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- Bootstrap 5 for grid (only for tutorial section) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         :root {
@@ -110,298 +112,151 @@
             .dropdown-content { width: 200px; right: 0; left: auto; }
         }
 
-        .container { 
-            max-width: 1300px; 
-            margin: 0 auto; 
-            padding: 0 12px; 
-            width: 100%;
-            overflow-x: hidden;
-        }
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 12px; width: 100%; overflow-x: hidden; }
 
-        /* ========== AD ZONES ========== */
-        .ad-spot {
-            background: rgba(0,0,0,0.2);
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-edge);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.4);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            transition: 0.2s;
-            margin: 0;
-        }
+        /* ========== AD ZONES - MINIMAL GAP ========== */
         .top-ad-container {
             display: flex; flex-wrap: wrap; justify-content: center;
-            align-items: center; gap: 10px; margin: 8px 0 15px 0;
+            align-items: center; gap: 4px; margin: 4px 0 8px 0;
         }
         .mobile-ad {
             min-width: 300px;
-            min-height: 55px;
+            min-height: 50px;
             display: block;
         }
         .desktop-ad-leader {
             min-width: 300px;
-            min-height: 90px;
+            min-height: 60px;
             display: none;
         }
         @media (min-width: 768px) {
             .mobile-ad { display: none; }
-            .desktop-ad-leader { display: block; min-width: 728px; }
+            .desktop-ad-leader { display: block; min-width: 468px; }
         }
 
-        .ad-vertical-container {
-            display: flex; justify-content: center; margin: 12px 0 12px;
-        }
-        .vertical-ad {
-            width: 300px; min-height: 270px;
-            background: transparent;
-            display: block;
-        }
-        .ad-horizontal-container {
-            display: flex; justify-content: center; margin: 12px 0 12px;
-        }
-        .horizontal-ad {
-            width: 100%; max-width: 728px; min-height: 90px;
-            background: transparent;
-            display: none;
-        }
+        .ad-vertical-container { display: flex; justify-content: center; margin: 8px 0; }
+        .vertical-ad { width: 300px; min-height: 250px; background: transparent; display: block; }
+        .ad-horizontal-container { display: flex; justify-content: center; margin: 8px 0; }
+        .horizontal-ad { width: 100%; max-width: 468px; min-height: 60px; background: transparent; display: none; }
         @media (min-width: 768px) {
             .vertical-ad { display: none; }
             .horizontal-ad { display: flex; }
         }
 
-        /* ========== SLIDER – EXTRA SMALL POSTERS ========== */
+        /* ========== SLIDER – FULL IMAGE VISIBLE ========== */
         .coverflow-wrapper {
-            position: relative; margin: 8px 0 8px; padding: 0 2px;
+            position: relative; margin: 5px 0 5px; padding: 0;
             width: 100%;
             overflow: visible;
         }
         .swiper {
             width: 100%;
-            height: 150px;
+            height: 160px;
             overflow: visible;
         }
-        
         .swiper-wrapper {
-            gap: 15px;
+            align-items: center;
         }
-        
         .swiper-slide {
-            width: 38px;
+            width: 80px;
             aspect-ratio: 2 / 3;
-            border-radius: 4px;
+            border-radius: 8px;
             overflow: hidden;
-            border: 1.5px solid rgba(255,255,255,0.3);
-            box-shadow: 0 8px 12px -6px rgba(0,0,0,0.8);
+            border: 2px solid rgba(255,255,255,0.3);
+            box-shadow: 0 10px 20px -5px black;
             transition: all 0.3s ease;
             cursor: pointer;
-            opacity: 0.6;
-            transform: scale(0.8);
-            filter: blur(0.3px);
+            opacity: 0.7;
+            transform: scale(0.85);
+            filter: blur(0.2px);
             margin: 0 !important;
+            background: #1a1f2e;
         }
-        
         .swiper-slide img { 
             width: 100%; 
             height: 100%; 
-            object-fit: cover;  
+            object-fit: cover;
             object-position: center;
             display: block; 
             pointer-events: none;
         }
-        
         .swiper-slide-active {
             transform: scale(1.1) !important;
             opacity: 1;
             border-color: var(--accent);
-            box-shadow: 0 10px 20px var(--accent);
+            box-shadow: 0 10px 25px var(--accent);
             border-width: 2px;
             filter: blur(0);
             z-index: 10;
         }
-        
-        .swiper-slide-prev, .swiper-slide-next {
-            transform: scale(0.9);
-            opacity: 0.7;
-            filter: blur(0.2px);
+        @media (min-width: 480px) {
+            .swiper-slide { width: 100px; }
         }
-        
         @media (min-width: 768px) {
-            .swiper { height: 150px; }
-            .swiper-wrapper { gap: 8px; }
-            .swiper-slide {
-                width: 48px;
-                border-radius: 6px;
-                transform: scale(0.85);
-            }
-            .swiper-slide-active {
-                transform: scale(1.2) !important;
-            }
+            .swiper { height: 180px; }
+            .swiper-slide { width: 120px; transform: scale(0.9); }
+            .swiper-slide-active { transform: scale(1.15) !important; }
         }
-        
+        @media (min-width: 1024px) {
+            .swiper-slide { width: 140px; }
+        }
+
         /* main prompt text */
-        .main-prompt-text {
-            display: flex; flex-direction: column; align-items: center;
-            margin: 2px 0 2px;
-        }
+        .main-prompt-text { display: flex; flex-direction: column; align-items: center; margin: 5px 0; }
         .big-static-line {
-            font-family: 'Outfit', sans-serif; font-weight: 800; 
-            font-size: 1.2rem;
+            font-weight: 800; font-size: 1.2rem;
             background: linear-gradient(135deg, #ffffff, #fde8b3, #b5dcff);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            display: inline-flex; flex-wrap: wrap; justify-content: center;
-            align-items: center; gap: 5px; text-align: center; line-height: 1.2;
+            text-align: center;
         }
-        @media (min-width: 768px) {
-            .big-static-line { font-size: 2rem; }
-        }
-        
-        .static-down-arrow { font-size: 1.5rem; color: #90e0ff; filter: drop-shadow(0 4px 6px black); animation: bounceSoft 2s infinite; }
-        @media (min-width: 768px) { .static-down-arrow { font-size: 2.5rem; } }
+        @media (min-width: 768px) { .big-static-line { font-size: 2rem; } }
+        .static-down-arrow { font-size: 1.5rem; color: #90e0ff; animation: bounceSoft 2s infinite; }
         @keyframes bounceSoft { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(8px); } }
 
-        /* ===== MARVEL SUPERHERO LANDING ANIMATIONS ===== */
+        /* ===== ORIGINAL SUPERHERO LANDING ANIMATIONS ===== */
         @keyframes superheroLandingLeft {
-            0% { 
-                opacity: 0; 
-                transform: translateX(-150px) translateY(-50px) rotate(-15deg) scale(0.3);
-                filter: blur(8px);
-            }
-            40% { 
-                opacity: 0.9; 
-                transform: translateX(10px) translateY(5px) rotate(3deg) scale(1.1);
-                filter: blur(0);
-            }
-            70% {
-                transform: translateX(-3px) translateY(-2px) rotate(-1deg) scale(0.98);
-            }
-            100% { 
-                opacity: 1; 
-                transform: translateX(0) translateY(0) rotate(0) scale(1);
-            }
+            0% { opacity: 0; transform: translateX(-150px) translateY(-50px) rotate(-15deg) scale(0.3); filter: blur(8px); }
+            40% { opacity: 0.9; transform: translateX(10px) translateY(5px) rotate(3deg) scale(1.1); filter: blur(0); }
+            70% { transform: translateX(-3px) translateY(-2px) rotate(-1deg) scale(0.98); }
+            100% { opacity: 1; transform: translateX(0) translateY(0) rotate(0) scale(1); }
         }
-        
         @keyframes superheroLandingRight {
-            0% { 
-                opacity: 0; 
-                transform: translateX(150px) translateY(-50px) rotate(15deg) scale(0.3);
-                filter: blur(8px);
-            }
-            40% { 
-                opacity: 0.9; 
-                transform: translateX(-10px) translateY(5px) rotate(-3deg) scale(1.1);
-                filter: blur(0);
-            }
-            70% {
-                transform: translateX(3px) translateY(-2px) rotate(1deg) scale(0.98);
-            }
-            100% { 
-                opacity: 1; 
-                transform: translateX(0) translateY(0) rotate(0) scale(1);
-            }
+            0% { opacity: 0; transform: translateX(150px) translateY(-50px) rotate(15deg) scale(0.3); filter: blur(8px); }
+            40% { opacity: 0.9; transform: translateX(-10px) translateY(5px) rotate(-3deg) scale(1.1); filter: blur(0); }
+            70% { transform: translateX(3px) translateY(-2px) rotate(1deg) scale(0.98); }
+            100% { opacity: 1; transform: translateX(0) translateY(0) rotate(0) scale(1); }
         }
-        
         @keyframes superheroLandingUp {
-            0% { 
-                opacity: 0; 
-                transform: translateY(150px) translateX(-30px) rotate(10deg) scale(0.3);
-                filter: blur(8px);
-            }
-            40% { 
-                opacity: 0.9; 
-                transform: translateY(-10px) translateX(5px) rotate(-2deg) scale(1.1);
-                filter: blur(0);
-            }
-            70% {
-                transform: translateY(3px) translateX(-2px) rotate(1deg) scale(0.98);
-            }
-            100% { 
-                opacity: 1; 
-                transform: translateY(0) translateX(0) rotate(0) scale(1);
-            }
+            0% { opacity: 0; transform: translateY(150px) translateX(-30px) rotate(10deg) scale(0.3); filter: blur(8px); }
+            40% { opacity: 0.9; transform: translateY(-10px) translateX(5px) rotate(-2deg) scale(1.1); filter: blur(0); }
+            70% { transform: translateY(3px) translateX(-2px) rotate(1deg) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) translateX(0) rotate(0) scale(1); }
         }
-        
         @keyframes superheroLandingDown {
-            0% { 
-                opacity: 0; 
-                transform: translateY(-150px) translateX(30px) rotate(-10deg) scale(0.3);
-                filter: blur(8px);
-            }
-            40% { 
-                opacity: 0.9; 
-                transform: translateY(10px) translateX(-5px) rotate(2deg) scale(1.1);
-                filter: blur(0);
-            }
-            70% {
-                transform: translateY(-3px) translateX(2px) rotate(-1deg) scale(0.98);
-            }
-            100% { 
-                opacity: 1; 
-                transform: translateY(0) translateX(0) rotate(0) scale(1);
-            }
+            0% { opacity: 0; transform: translateY(-150px) translateX(30px) rotate(-10deg) scale(0.3); filter: blur(8px); }
+            40% { opacity: 0.9; transform: translateY(10px) translateX(-5px) rotate(2deg) scale(1.1); filter: blur(0); }
+            70% { transform: translateY(-3px) translateX(2px) rotate(-1deg) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) translateX(0) rotate(0) scale(1); }
+        }
+        @keyframes landingImpactRipple {
+            0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8), 0 0 20px 5px rgba(0, 242, 254, 0.7); transform: scale(1); }
+            30% { box-shadow: 0 0 30px 15px rgba(255, 255, 255, 0.5), 0 0 50px 25px rgba(0, 242, 254, 0.9); transform: scale(1.08); }
+            70% { box-shadow: 0 0 15px 8px rgba(255, 255, 255, 0.3), 0 0 30px 15px var(--accent); transform: scale(1.02); }
+            100% { box-shadow: 0 10px 20px rgba(0,0,0,0.4), 0 0 15px 2px rgba(0, 242, 254, 0.3); transform: scale(1); }
         }
 
-        /* Energy ripple + glow pulse on landing */
-        @keyframes landingImpactRipple {
-            0% { 
-                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.8), 
-                            0 0 20px 5px rgba(0, 242, 254, 0.7);
-                transform: scale(1);
-            }
-            30% { 
-                box-shadow: 0 0 30px 15px rgba(255, 255, 255, 0.5), 
-                            0 0 50px 25px rgba(0, 242, 254, 0.9);
-                transform: scale(1.08);
-            }
-            70% { 
-                box-shadow: 0 0 15px 8px rgba(255, 255, 255, 0.3), 
-                            0 0 30px 15px var(--accent);
-                transform: scale(1.02);
-            }
-            100% { 
-                box-shadow: 0 10px 20px rgba(0,0,0,0.4), 
-                            0 0 15px 2px rgba(0, 242, 254, 0.3);
-                transform: scale(1);
-            }
-        }
-        
-        /* quick links grid - hero landing */
-        .quick-links-grid {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            margin: 15px 0 15px;
-            width: 100%;
-        }
-        
+        /* gradient buttons - ORIGINAL COLORS & ANIMATIONS */
+        .quick-links-grid { display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 12px 0; width: 100%; }
         .glow-on-click-btn {
-            width: 100%;
-            max-width: 320px;
-            padding: 12px 16px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border: 2px solid rgba(255,255,255,0.15);
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-            backdrop-filter: blur(20px);
-            background-origin: border-box;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.2s;
-            opacity: 0; /* initially hidden for animation */
-            animation-fill-mode: forwards;
-            animation-duration: 0.9s;
-            animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000); /* Marvel impact easing */
+            width: 100%; max-width: 320px; padding: 12px 16px; border-radius: 50px;
+            display: flex; align-items: center; gap: 12px; border: 2px solid rgba(255,255,255,0.15);
+            text-decoration: none; color: white; font-weight: 600; backdrop-filter: blur(20px);
+            background-origin: border-box; position: relative; overflow: hidden;
+            transition: transform 0.2s; opacity: 0; animation-fill-mode: forwards;
+            animation-duration: 0.9s; animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
             transform-origin: center;
         }
-        
-        /* different landing directions for each button */
+        /* different landing directions for each button - ORIGINAL */
         .glow-on-click-btn:nth-child(1) { 
             background: linear-gradient(135deg, #ff3b5c, #b2258f); 
             border-color: #ffccdd;
@@ -426,47 +281,17 @@
             animation-name: superheroLandingDown;
             animation-delay: 0.4s;
         }
-        
-        /* Energy impact effect on finish */
-        .glow-on-click-btn.landed {
-            animation: landingImpactRipple 0.8s ease-out;
-        }
-        
-        /* install buttons hero landing */
-        .install-grid {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            margin: 8px 0 18px;
-            width: 100%;
-        }
-        
+        .glow-on-click-btn.landed { animation: landingImpactRipple 0.8s ease-out; }
+
         .install-btn {
-            width: 100%;
-            max-width: 320px;
-            padding: 12px 18px;
-            border-radius: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            border: 2px solid rgba(255,255,255,0.3);
-            text-decoration: none;
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 700;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 15px 25px -5px #00000080;
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.2s;
-            opacity: 0;
-            animation-fill-mode: forwards;
-            animation-duration: 0.9s;
-            animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+            width: 100%; max-width: 320px; padding: 12px 18px; border-radius: 60px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            border: 2px solid rgba(255,255,255,0.3); text-decoration: none; color: white;
+            font-size: 1.1rem; font-weight: 700; backdrop-filter: blur(10px);
+            box-shadow: 0 15px 25px -5px #00000080; position: relative; overflow: hidden;
+            transition: transform 0.2s; opacity: 0; animation-fill-mode: forwards;
+            animation-duration: 0.9s; animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
         }
-        
         .install-btn:first-child { 
             background: linear-gradient(225deg, #ff8c2e, #d5006b);
             animation-name: superheroLandingLeft;
@@ -477,216 +302,103 @@
             animation-name: superheroLandingRight;
             animation-delay: 0.6s;
         }
-        
-        /* tutorial cards hero landing */
-        .tutorial-grid {
-            display: grid; 
-            grid-template-columns: 1fr;
-            gap: 15px; 
-            margin: 15px 0 20px;
+        .install-btn.landed { animation: landingImpactRipple 0.8s ease-out; }
+
+        .glow-on-click-btn i, .install-btn i { 
+            font-size: 1.8rem; min-width: 36px; text-align: center;
+            color: white; filter: drop-shadow(0 2px 5px black);
         }
-        
-        .tutorial-card {
-            background: rgba(12, 22, 40, 0.5); 
-            backdrop-filter: blur(20px);
-            border-radius: 30px; 
-            padding: 20px 15px; 
-            text-align: center;
-            border: 2px solid rgba(0,242,254,0.3); 
-            transition: 0.25s;
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            animation-name: superheroLandingUp;
-            animation-duration: 0.9s;
-            animation-fill-mode: forwards;
-            animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
-        }
-        
-        .tutorial-card:nth-child(1) { animation-delay: 0.7s; }
-        .tutorial-card:nth-child(2) { animation-delay: 0.8s; }
-        .tutorial-card:nth-child(3) { animation-delay: 0.9s; }
-        
-        .tutorial-card.landed {
-            animation: landingImpactRipple 0.8s ease-out;
-        }
-        
-        .tutorial-card:active { 
-            border-color: var(--accent); 
-            background: rgba(20,40,70,0.7); 
-            transform: scale(0.98); 
-        }
-        .tutorial-card i { 
-            font-size: 2.5rem; 
-            background: linear-gradient(45deg, gold, #ffb347); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            margin-bottom: 12px; 
-        }
-        .tutorial-card h4 { 
-            color: var(--accent); 
-            font-size: 1.4rem; 
-            margin-bottom: 8px; 
-        }
-        .tutorial-card p { 
-            color: #eef3ff; 
-            font-size: 0.9rem; 
-            line-height: 1.4;
-        }
-        
-        /* plain app prompt hero landing */
+        .btn-text { display: flex; flex-direction: column; align-items: flex-start; line-height: 1.2; flex: 1; }
+        .small-label { font-size: 0.65rem; opacity: 0.9; color: #fffdde; text-transform: uppercase; letter-spacing: 0.5px; }
+        .main-label { font-size: 1rem; font-weight: 700; white-space: nowrap; }
+
+        .install-grid { display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 8px 0 15px; }
+
         .plain-app-prompt {
-            text-align: center; 
-            font-size: 1.3rem; 
-            font-weight: 600; 
-            margin: 12px 0 10px;
-            background: rgba(0,0,0,0.25); 
-            backdrop-filter: blur(16px);
-            padding: 6px 18px; 
-            border-radius: 60px; 
-            display: inline-block;
-            border: 2px dashed var(--gold); 
-            color: #fffbe3; 
-            letter-spacing: 1px;
-            width: auto;
-            opacity: 0;
-            animation: superheroLandingDown 0.9s 0.45s forwards;
+            text-align: center; font-size: 1.3rem; font-weight: 600; margin: 12px 0 10px;
+            background: rgba(0,0,0,0.25); backdrop-filter: blur(16px);
+            padding: 6px 18px; border-radius: 60px; display: inline-block;
+            border: 2px dashed var(--gold); color: #fffbe3; letter-spacing: 1px;
+            width: auto; opacity: 0; animation: superheroLandingDown 0.9s 0.45s forwards;
             animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
         }
-        
-        .plain-app-prompt.landed {
-            animation: landingImpactRipple 0.8s ease-out;
-        }
-        
-        @media (min-width: 768px) {
-            .plain-app-prompt { font-size: 1.8rem; padding: 8px 30px; }
-        }
+        .plain-app-prompt.landed { animation: landingImpactRipple 0.8s ease-out; }
         .plain-app-prompt i { color: var(--gold); margin-right: 8px; }
 
-        .glow-on-click-btn i, 
-        .install-btn i { 
-            font-size: 1.8rem; 
-            color: white; 
-            filter: drop-shadow(0 2px 5px black);
-            min-width: 36px;
+        @media (min-width: 768px) {
+            .quick-links-grid { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 12px; }
+            .glow-on-click-btn { flex: 1 1 180px; max-width: 220px; }
+            .install-grid { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+            .install-btn { flex: 1 1 200px; max-width: 240px; }
+            .plain-app-prompt { font-size: 1.8rem; padding: 8px 30px; }
+        }
+
+        /* Tutorial videos section */
+        .section-box { background: rgba(0,0,0,0.2); backdrop-filter: blur(10px); border-radius: 30px; padding: 20px 15px; margin: 20px 0; border: 1px solid var(--glass-edge); }
+        .ratio iframe { border-radius: 12px; }
+        h5 { color: var(--accent); font-weight: 600; }
+
+        /* Donation card */
+        .donation-card {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: 2px solid var(--gold);
+            border-radius: 40px;
+            padding: 25px 20px;
+            margin: 25px 0 15px;
+            text-align: center;
+            box-shadow: 0 20px 30px -10px black;
+        }
+        .donation-qr {
+            max-width: 200px;
+            border-radius: 20px;
+            border: 3px solid white;
+            margin: 15px auto;
+            display: block;
+        }
+        .input-group {
+            max-width: 320px;
+            margin: 15px auto;
+        }
+        .form-control {
+            background: #0b0f1a;
+            border: 1px solid var(--accent);
+            color: white;
+            border-radius: 50px 0 0 50px;
+            padding: 12px;
+            font-size: 0.9rem;
+        }
+        .btn-warning {
+            background: #ffd966;
+            border: none;
+            color: #0a0f1a;
+            font-weight: 700;
+            border-radius: 0 50px 50px 0 !important;
+            padding: 12px 20px;
+        }
+        .btn-warning:hover { background: #ffc107; }
+
+        /* footer */
+        .footer-bar {
+            background: rgba(0,0,0,0.3); backdrop-filter: blur(25px);
+            border-radius: 40px 40px 0 0; border-top: 4px solid var(--primary);
+            padding: 25px 15px 20px; margin-top: 30px;
+            display: flex; flex-direction: column; align-items: center; gap: 15px;
             text-align: center;
         }
-        
-        .btn-text { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: flex-start; 
-            line-height: 1.2; 
-            flex: 1;
-        }
-        .small-label { 
-            font-size: 0.65rem; 
-            opacity: 0.9; 
-            color: #fffdde; 
-            text-transform: uppercase; 
-            letter-spacing: 0.5px;
-        }
-        .main-label { 
-            font-size: 1rem; 
-            font-weight: 700; 
-            white-space: nowrap;
-        }
-        
-        /* ===== RIPPLE EFFECT FOR TOUCH ===== */
+        .terms a { color: var(--accent); text-decoration: none; margin: 0 10px; }
+        .dev { font-size: 1.3rem; background: linear-gradient(145deg, gold, #ffae70); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800; }
+        @media (min-width: 768px) { .footer-bar { flex-direction: row; justify-content: space-between; } }
+
+        /* touch ripple */
         .touch-ripple {
-            position: absolute;
-            border-radius: 50%;
+            position: absolute; border-radius: 50%;
             background: radial-gradient(circle, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.3) 70%);
-            transform: scale(0);
-            animation: touchRippleAnim 0.6s ease-out;
-            pointer-events: none;
-            z-index: 10;
-            mix-blend-mode: overlay;
+            transform: scale(0); animation: touchRippleAnim 0.6s ease-out;
+            pointer-events: none; z-index: 10; mix-blend-mode: overlay;
         }
-        
         @keyframes touchRippleAnim {
             0% { transform: scale(0); opacity: 0.8; }
             100% { transform: scale(5); opacity: 0; }
-        }
-        
-        /* desktop adjustments */
-        @media (min-width: 768px) {
-            .quick-links-grid {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 16px;
-            }
-            .glow-on-click-btn {
-                flex: 1 1 180px;
-                max-width: 220px;
-                padding: 12px 10px;
-            }
-            .main-label { font-size: 1rem; }
-            
-            .install-grid {
-                flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-            .install-btn {
-                flex: 1 1 200px;
-                max-width: 240px;
-            }
-            
-            .tutorial-grid {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 18px;
-            }
-        }
-
-        /* footer bar */
-        .footer-bar {
-            background: rgba(0,0,0,0.3); 
-            backdrop-filter: blur(25px);
-            border-radius: 40px 40px 0 0; 
-            border-top: 4px solid var(--primary);
-            padding: 25px 15px 20px; 
-            margin-top: 30px;
-            display: flex; 
-            flex-direction: column;
-            align-items: center; 
-            gap: 15px; 
-            color: #e3ecff;
-            text-align: center;
-        }
-        .terms a { 
-            color: var(--accent); 
-            text-decoration: none; 
-            margin: 0 10px; 
-            font-weight: 500;
-            display: inline-block;
-            padding: 5px;
-        }
-        .dev { 
-            font-size: 1.3rem; 
-            background: linear-gradient(145deg, gold, #ffae70); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            font-weight: 800; 
-        }
-
-        @media (min-width: 768px) {
-            .footer-bar {
-                flex-direction: row;
-                justify-content: space-between;
-                padding: 30px 20px 20px;
-                text-align: left;
-            }
-        }
-
-        img, svg, video, canvas, iframe {
-            max-width: 100%;
-            height: auto;
-        }
-        button, a {
-            touch-action: manipulation;
-            cursor: pointer;
         }
     </style>
 </head>
@@ -719,7 +431,7 @@
     </nav>
 
     <div class="container">
-        <!-- ===== DUAL ADS TOP ===== -->
+        <!-- ===== TOP ADS – MINIMAL GAP ===== -->
         <div class="top-ad-container">
             <div class="ad-spot mobile-ad">
                 <script>
@@ -738,15 +450,15 @@
             </div>
         </div>
 
-        <!-- Trending Movies heading -->
-        <div style="margin: 2px 0 2px;">
-            <div style="display: flex; align-items: center; gap: 5px; padding-left: 2px;">
-                <i class="fas fa-fire" style="color: var(--primary); font-size: 1.2rem;"></i>
-                <span style="color: white; font-size: 1.1rem; font-weight: 700; background: linear-gradient(145deg,#ffb3ba,#c0e0ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"> TRENDING NOW</span>
+        <!-- Trending heading -->
+        <div style="margin: 5px 0;">
+            <div style="display: flex; align-items: center; gap: 5px;">
+                <i class="fas fa-fire" style="color: var(--primary);"></i>
+                <span style="font-weight: 700; background: linear-gradient(145deg,#ffb3ba,#c0e0ff); -webkit-background-clip:text; -webkit-text-fill-color:transparent;"> TRENDING NOW</span>
             </div>
         </div>
         
-        <!-- micro poster slider -->
+        <!-- micro poster slider (full image visible) -->
         <div class="coverflow-wrapper">
             <div class="swiper" id="coverflowSwiper">
                 <div class="swiper-wrapper" id="swiperWrapper"></div>
@@ -759,7 +471,7 @@
             <div class="static-down-arrow">👇</div>
         </div>
 
-        <!-- four gradient buttons with superhero landing -->
+        <!-- four gradient buttons - ORIGINAL COLORS & ANIMATIONS PRESERVED -->
         <div class="quick-links-grid">
             <a href="https://t.me/sk4film" target="_blank" class="glow-on-click-btn" id="btn1">
                 <i class="fas fa-film"></i>
@@ -784,7 +496,7 @@
             <span class="plain-app-prompt" id="appPrompt"><i class="fa-brands fa-download"></i> INSTALL MOVIES APP</span>
         </div>
 
-        <!-- install buttons with superhero landing -->
+        <!-- install buttons - ORIGINAL COLORS & ANIMATIONS -->
         <div class="install-grid">
             <a href="https://github.com/sk4film/Web/releases/download/v1.0/SK4Film.apk" class="install-btn" id="install1"><i class="fas fa-download"></i> Download Now</a>
             <a href="https://www.mediafire.com/file/wq5t24hs04khdx6/SK4Film.apk/file" target="_blank" class="install-btn" id="install2"><i class="fa-solid fa-fire"></i> MediaFire</a>
@@ -792,38 +504,79 @@
 
         <!-- ===== AD ZONE 2: VERTICAL ===== -->
         <div class="ad-vertical-container">
-            <div class="ad-spot vertical-ad" style="min-height: 270px; width: 300px;">
+            <div class="ad-spot vertical-ad" style="min-height: 250px;">
                 <script async src="https://js.onclckmn.com/static/onclicka.js" data-admpid="429593"></script>
             </div>
         </div>
 
         <!-- ===== AD ZONE 3: HORIZONTAL ===== -->
         <div class="ad-horizontal-container">
-            <div class="ad-spot horizontal-ad" style="min-height: 90px;">
+            <div class="ad-spot horizontal-ad" style="min-height: 60px;">
                 <script async src="https://js.onclckmn.com/static/onclicka.js" data-admpid="429611"></script>
             </div>
         </div>
 
-        <!-- tutorial cards with superhero landing -->
-        <div style="margin-top: 10px;">
-            <h2 style="color: var(--accent); text-align: center; font-size: 1.6rem; margin-bottom: 12px;"><i class="fas fa-play-circle me-2"></i>Tutorials</h2>
-            <div class="tutorial-grid">
-                <div class="tutorial-card" id="tut1">
-                    <i class="fas fa-search"></i>
-                    <h4>Search</h4>
-                    <p>How to search movies efficiently inside telegram</p>
+        <!-- ===== TUTORIAL VIDEOS SECTION ===== -->
+        <div class="section-box">
+            <h2 style="color: var(--accent); text-align: center; margin-bottom: 25px; padding: 0 5px;">
+                <i class="fas fa-play-circle me-2"></i>Tutorial Videos
+            </h2>
+            <div class="row gy-4">
+                <div class="col-12 col-md-4">
+                    <div style="background: rgba(30, 41, 59, 0.7); padding: 15px; border-radius: 8px; text-align: center; height: 100%;">
+                        <h5 style="color: var(--accent); margin-bottom: 12px; font-size: 1rem;">How to Search Movies</h5>
+                        <div class="ratio ratio-16x9">
+                            <iframe allowfullscreen src="https://www.youtube.com/embed/PSQ9_KLzm8s" style="border-radius: 8px;" loading="lazy"></iframe>
+                        </div>
+                    </div>
                 </div>
-                <div class="tutorial-card" id="tut2">
-                    <i class="fas fa-link"></i>
-                    <h4>StreamNet</h4>
-                    <p>Watch via StreamNet link – full guide</p>
+                
+                <div class="col-12 col-md-4">
+                    <div style="background: rgba(30, 41, 59, 0.7); padding: 15px; border-radius: 8px; text-align: center; height: 100%;">
+                        <h5 style="color: var(--accent); margin-bottom: 12px; font-size: 1rem;">StreaamNet Link</h5>
+                        <div class="ratio ratio-16x9">
+                            <iframe allowfullscreen src="https://www.youtube.com/embed/fVL7DfhnwWM" style="border-radius: 8px;" loading="lazy"></iframe>
+                        </div>
+                    </div>
                 </div>
-                <div class="tutorial-card" id="tut3">
-                    <i class="fas fa-disk"></i>
-                    <h4>DiskWala</h4>
-                    <p>Direct download from DiskWala link</p>
+                
+                <div class="col-12 col-md-4">
+                    <div style="background: rgba(30, 41, 59, 0.7); padding: 15px; border-radius: 8px; text-align: center; height: 100%;">
+                        <h5 style="color: var(--accent); margin-bottom: 12px; font-size: 1rem;">DiskWala Link</h5>
+                        <div class="ratio ratio-16x9">
+                            <iframe allowfullscreen src="https://www.youtube.com/embed/ZNKeL-pcIDw" style="border-radius: 8px;" loading="lazy"></iframe>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
+
+        <!-- ===== DONATION SECTION ===== -->
+        <div class="donation-card">
+            <h4 class="text-warning mb-3">
+                <i class="fas fa-heart me-2"></i> Support SK4FiLM
+            </h4>
+            <p class="mb-3">Help us maintain this streaming service and add more features.</p>
+            
+            <img src="https://i.ibb.co/LzstL1hn/QR.jpg" 
+                 alt="Donation QR Code" 
+                 class="donation-qr"
+                 onerror="this.src='https://via.placeholder.com/200?text=QR'">
+            
+            <div class="mb-3">
+                <h6 class="text-light">UPI ID:</h6>
+                <div class="input-group mx-auto" style="max-width: 300px;">
+                    <input type="text" class="form-control bg-dark text-light text-center" 
+                           value="cf.sk4film@cashfreensdlpb" readonly id="upiId">
+                    <button class="btn btn-warning" onclick="copyUPI()">
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <a href="https://cfpe.me/skfilmbox" target="_blank" class="btn btn-warning px-4">
+                <i class="fas fa-donate me-2"></i> DONATE NOW
+            </a>
         </div>
 
         <!-- footer -->
@@ -834,12 +587,17 @@
         </div>
     </div>
 
-    <!-- swiper and movie logic + superhero impact effects -->
+    <!-- scripts -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         const BACKEND_URL = 'https://sk4film.koyeb.app';
         const FALLBACK_IMG = 'https://iili.io/fAeIwv9.th.png';
         let swiperInstance = null;
+
+        // Movie click handler: redirect to search.html?query=title
+        window.handleMovieClick = function(title) {
+            window.location.href = `https://sk4film.vercel.app/search.html?query=${encodeURIComponent(title)}`;
+        };
 
         async function loadAll() {
             try {
@@ -848,7 +606,7 @@
                 let movies = (data.status === 'success' && data.movies) ? data.movies : [];
                 if (!movies.length) movies = Array(16).fill({ title: 'Demo', poster_url: '', year: '2025' });
 
-                const firstBatch = movies.slice(0, 16);
+                const firstBatch = movies.slice(0, 18);
                 const wrapper = document.getElementById('swiperWrapper');
                 wrapper.innerHTML = firstBatch.map(m => {
                     const posterUrl = m.poster_url && m.poster_url.startsWith('http') ? m.poster_url : `${BACKEND_URL}/api/poster?title=${encodeURIComponent(m.title || 'unknown')}&year=${m.year || ''}`;
@@ -864,52 +622,34 @@
                     slidesPerView: 'auto',
                     loop: true,
                     spaceBetween: 2,
-                    autoplay: {
-                        delay: 2600,
-                        disableOnInteraction: false,
-                        pauseOnMouseEnter: true
-                    },
+                    autoplay: { delay: 2400, disableOnInteraction: false },
                     coverflowEffect: {
                         rotate: 20,
                         stretch: 0,
-                        depth: 60,
-                        modifier: 0.7,
+                        depth: 80,
+                        modifier: 0.8,
                         slideShadows: true
                     },
                     speed: 500,
                     breakpoints: {
-                        320: { 
-                            slidesPerView: 2.4,
-                            spaceBetween: 2,
-                            coverflowEffect: { rotate: 15, depth: 40, modifier: 0.6 }
-                        },
-                        640: { 
-                            slidesPerView: 3.2,
-                            spaceBetween: 4,
-                            coverflowEffect: { rotate: 18, depth: 70, modifier: 0.9 }
-                        },
-                        1024: { 
-                            slidesPerView: 4.5,
-                            spaceBetween: 6,
-                            coverflowEffect: { rotate: 18, depth: 100, modifier: 1.0 }
-                        }
+                        320: { slidesPerView: 2.8, spaceBetween: 2 },
+                        480: { slidesPerView: 3.2, spaceBetween: 4 },
+                        768: { slidesPerView: 4.5, spaceBetween: 6 },
+                        1024: { slidesPerView: 5.5, spaceBetween: 8 }
                     }
                 });
             } catch (e) {
-                console.warn('fallback, using demo images');
-                const fake = ['Deadpool','Jawan','Animal','Dune2','Kung Fu Panda','Godzilla','Furiosa','Inside Out','Despicable','Twisters','Mad Max','Alien','Oppenheimer','Barbie','Batman','Gladiator'];
+                console.warn('fallback');
+                const fake = ['Deadpool','Jawan','Animal','Dune2','Kung Fu Panda','Godzilla','Furiosa','Inside Out','Despicable','Twisters','Mad Max','Alien','Oppenheimer','Barbie','Batman','Gladiator','RRR','KGF'];
                 document.getElementById('swiperWrapper').innerHTML = fake.map(t => `<div class="swiper-slide" onclick="handleMovieClick('${t}')"><img src="${FALLBACK_IMG}" alt=""></div>`).join('');
                 if (swiperInstance) swiperInstance.destroy(true, true);
                 swiperInstance = new Swiper('#coverflowSwiper', {
-                    effect: 'coverflow',
-                    grabCursor: true,
-                    centeredSlides: true,
-                    slidesPerView: 'auto',
-                    loop: true,
-                    spaceBetween: 2,
-                    autoplay: { delay: 2500, disableOnInteraction: false },
-                    coverflowEffect: { rotate: 18, stretch: 0, depth: 50, modifier: 0.7, slideShadows: true },
+                    effect: 'coverflow', grabCursor: true, centeredSlides: true,
+                    slidesPerView: 'auto', loop: true, spaceBetween: 2,
+                    autoplay: { delay: 2400 },
+                    coverflowEffect: { rotate: 18, depth: 60, modifier: 0.7, slideShadows: true },
                     speed: 500,
+                    breakpoints: { 320: { slidesPerView: 2.8 }, 768: { slidesPerView: 4.5 } }
                 });
             }
             
@@ -922,9 +662,6 @@
                     document.getElementById('btn4'),
                     document.getElementById('install1'),
                     document.getElementById('install2'),
-                    document.getElementById('tut1'),
-                    document.getElementById('tut2'),
-                    document.getElementById('tut3'),
                     document.getElementById('appPrompt')
                 ];
                 
@@ -936,95 +673,67 @@
                         }, 1000);
                     }
                 });
-            }, 1500); // Wait for all landing animations to complete
+            }, 1500);
         }
-        
-        function handleMovieClick(title) { 
-            window.location.href = `search.html?query=${encodeURIComponent(title)}`; 
-        }
-        
+
+        // Copy UPI function
+        window.copyUPI = function() {
+            const upiInput = document.getElementById('upiId');
+            upiInput.select();
+            navigator.clipboard?.writeText(upiInput.value);
+            alert('UPI ID copied!');
+        };
+
         document.addEventListener('DOMContentLoaded', loadAll);
 
-        // ========== TOUCH RIPPLE EFFECT FOR ALL CLICKABLE ELEMENTS ==========
-        function createTouchRipple(event) {
-            const element = event.currentTarget;
-            
-            // remove any existing ripples
-            const existingRipple = element.querySelector('.touch-ripple');
-            if (existingRipple) existingRipple.remove();
-            
-            const ripple = document.createElement('span');
-            ripple.classList.add('touch-ripple');
-            
-            const rect = element.getBoundingClientRect();
-            let x, y;
-            
-            if (event.touches) {
-                // touch event
-                x = event.touches[0].clientX - rect.left;
-                y = event.touches[0].clientY - rect.top;
-            } else {
-                // mouse event
-                x = event.clientX - rect.left;
-                y = event.clientY - rect.top;
-            }
-            
-            const size = Math.max(rect.width, rect.height) * 1.2;
-            
-            ripple.style.width = ripple.style.height = size + 'px';
-            ripple.style.left = (x - size/2) + 'px';
-            ripple.style.top = (y - size/2) + 'px';
-            
-            element.appendChild(ripple);
-            
-            // remove after animation
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        }
-
-        // Add touch ripple to all buttons and links
+        // Touch ripple - preserves original button functions
         document.addEventListener('DOMContentLoaded', function() {
-            const clickableElements = document.querySelectorAll(
-                '.glow-on-click-btn, .install-btn, .tutorial-card, .search-icon-btn, .menu-button, .dropdown-content a'
-            );
+            const clickableElements = document.querySelectorAll('.glow-on-click-btn, .install-btn, .tutorial-card, .search-icon-btn, .menu-button, .dropdown-content a');
             
-            clickableElements.forEach(element => {
-                element.addEventListener('click', function(e) {
-                    createTouchRipple(e);
-                    
-                    // for links, we need to handle navigation after ripple
-                    if (element.tagName === 'A' && element.getAttribute('target') !== '_blank' && !element.getAttribute('onclick')) {
-                        e.preventDefault();
-                        setTimeout(() => {
-                            window.location.href = element.href;
-                        }, 200);
-                    }
-                });
+            function createTouchRipple(e) {
+                const element = e.currentTarget;
+                const existingRipple = element.querySelector('.touch-ripple');
+                if (existingRipple) existingRipple.remove();
                 
-                element.addEventListener('touchstart', function(e) {
-                    createTouchRipple(e);
-                }, { passive: true });
+                const ripple = document.createElement('span');
+                ripple.classList.add('touch-ripple');
+                
+                const rect = element.getBoundingClientRect();
+                let x, y;
+                if (e.touches) { 
+                    x = e.touches[0].clientX - rect.left; 
+                    y = e.touches[0].clientY - rect.top; 
+                } else { 
+                    x = e.clientX - rect.left; 
+                    y = e.clientY - rect.top; 
+                }
+                const size = Math.max(rect.width, rect.height) * 1.2;
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = (x - size/2) + 'px';
+                ripple.style.top = (y - size/2) + 'px';
+                
+                element.appendChild(ripple);
+                setTimeout(() => ripple.remove(), 600);
+            }
+
+            clickableElements.forEach(el => {
+                el.addEventListener('click', createTouchRipple);
+                el.addEventListener('touchstart', createTouchRipple, { passive: true });
             });
-            
-            // special for search button
+
+            // Search button - ORIGINAL FUNCTION (alert demo)
             document.getElementById('searchBtn').addEventListener('click', function(e) {
                 createTouchRipple(e);
                 setTimeout(() => alert('🔍 search demo'), 200);
             });
-            
+
+            // Menu button for mobile
             document.getElementById('menuBtn').addEventListener('click', function(e) {
                 createTouchRipple(e);
                 const dropdown = document.querySelector('.dropdown-content');
-                if (window.innerWidth <= 768) {
-                    if (dropdown.style.display === 'flex') {
-                        dropdown.style.display = 'none';
-                    } else {
-                        dropdown.style.display = 'flex';
-                    }
-                }
+                dropdown.style.display = dropdown.style.display === 'flex' ? 'none' : 'flex';
             });
-            
+
             // Close dropdown when clicking outside
             document.addEventListener('click', function(e) {
                 if (!e.target.closest('.dropdown')) {
@@ -1033,5 +742,7 @@
             });
         });
     </script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
