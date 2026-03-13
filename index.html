@@ -398,6 +398,21 @@
             0% { transform: scale(0); opacity: 0.8; }
             100% { transform: scale(5); opacity: 0; }
         }
+        /* second ad zone spacing */
+        .second-ad-zone {
+            margin: 20px 0 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 280px; /* reserve space */
+        }
+        .desktop-native-ad {
+            display: none;
+        }
+        @media (min-width: 768px) {
+            .mobile-ad-300x250 { display: none; }
+            .desktop-native-ad { display: block; width: 100%; max-width: 728px; margin: 0 auto; }
+        }
     </style>
 </head>
 <body>
@@ -429,7 +444,7 @@
     </nav>
 
     <div class="container">
-        <!-- ===== TOP ADS – MINIMAL GAP ===== -->
+        <!-- ===== TOP ADS – MINIMAL GAP ===== (first ad spot, unchanged) -->
         <div class="top-ad-container">
             <div class="ad-spot mobile-ad">
                 <script>
@@ -500,21 +515,21 @@
             <a href="https://www.mediafire.com/file/wq5t24hs04khdx6/SK4Film.apk/file" target="_blank" class="install-btn" id="install2"><i class="fa-solid fa-fire"></i> MediaFire</a>
         </div>
 
-        <!-- ===== AD ZONE 2: VERTICAL ===== -->
+        <!-- ===== AD ZONE 1: mobile 300x250 (original) ===== -->
         <div class="ad-vertical-container">
             <div class="ad-spot vertical-ad" style="min-height: 250px;">
                 <script async src="https://js.onclckmn.com/static/onclicka.js" data-admpid="429593"></script>
             </div>
         </div>
 
-        <!-- ===== AD ZONE 3: HORIZONTAL ===== -->
+        <!-- ===== AD ZONE 2: Desktop horizontal (original) ===== -->
         <div class="ad-horizontal-container">
             <div class="ad-spot horizontal-ad" style="min-height: 60px;">
                 <script async src="https://js.onclckmn.com/static/onclicka.js" data-admpid="429611"></script>
             </div>
         </div>
 
-        <!-- ===== TUTORIAL VIDEOS SECTION ===== -->
+        <!-- ===== TUTORIAL VIDEOS SECTION with SECOND AD embedded ===== -->
         <div class="section-box">
             <h2 style="color: var(--accent); text-align: center; margin-bottom: 25px; padding: 0 5px;">
                 <i class="fas fa-play-circle me-2"></i>Tutorial Videos
@@ -545,6 +560,28 @@
                             <iframe allowfullscreen src="https://www.youtube.com/embed/ZNKeL-pcIDw" style="border-radius: 8px;" loading="lazy"></iframe>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- ===== SECOND AD ZONE: placed right after video grid, before donation ===== -->
+            <div class="second-ad-zone">
+                <!-- Mobile ad (300x250) -->
+                <div class="mobile-ad-300x250" style="width:300px; min-height:250px; margin:0 auto;">
+                    <script>
+                        atOptions = {
+                            'key' : '2df7c6148643c8b68e73fd33a3f4b322',
+                            'format' : 'iframe',
+                            'height' : 250,
+                            'width' : 300,
+                            'params' : {}
+                        };
+                    </script>
+                    <script src="https://marksdespitelinear.com/2df7c6148643c8b68e73fd33a3f4b322/invoke.js"></script>
+                </div>
+                <!-- Desktop native banner -->
+                <div class="desktop-native-ad">
+                    <script async="async" data-cfasync="false" src="https://marksdespitelinear.com/abeb3b95c6126d27d2a339d530831aab/invoke.js"></script>
+                    <div id="container-abeb3b95c6126d27d2a339d530831aab"></div>
                 </div>
             </div>
         </div>
